@@ -1441,20 +1441,17 @@ function showPIP(){ pc.classList.remove('hidden','minimized'); }
 (function(){
   var pip = document.getElementById('heygen-pip');
   var avatarUrl = 'https://interactiveavatarnextjsdemo.netlify.app';
-  var maxRetry = 5, attempt = 0, checkDelay = 4000;
-  function checkAvatar(){
+  var alive = false, attempt = 0, maxRetry = 3;
+  window.addEventListener('message', function(e){
+    if(e.origin.indexOf('netlify') !== -1) alive = true;
+  });
+  function retryIfDead(){
+    if(alive || attempt >= maxRetry) return;
     attempt++;
-    try {
-      var w = pip.contentWindow;
-      if(!w || !w.document || !w.document.body || w.document.body.innerHTML.length < 50){
-        if(attempt < maxRetry){ pip.src = avatarUrl + '?r=' + Date.now(); setTimeout(checkAvatar, checkDelay); }
-      }
-    } catch(e){
-      if(attempt < maxRetry){ pip.src = avatarUrl + '?r=' + Date.now(); setTimeout(checkAvatar, checkDelay); }
-    }
+    pip.src = avatarUrl + '?r=' + Date.now();
+    setTimeout(retryIfDead, 10000);
   }
-  pip.addEventListener('load', function(){ setTimeout(checkAvatar, checkDelay); });
-  setTimeout(checkAvatar, checkDelay);
+  setTimeout(retryIfDead, 10000);
 })();
 
 /* ═══ PostMessage: NAVIGATE_TAB ═══ */
