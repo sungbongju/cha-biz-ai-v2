@@ -1450,9 +1450,16 @@ function showPIP(){ pc.classList.remove('hidden','minimized'); }
 })();
 
 /* ═══ PostMessage: NAVIGATE_TAB ═══ */
+var _tabToSection = {
+  tab1:'research',tab2:'curriculum',tab3:'careers',tab4:'ai',
+  tab5:'ai',tab6:'experience',tab7:'research',tab8:'only-cha',
+  tab9:'careers',tab10:'careers',tab11:'only-cha',tab12:'ai',
+  tab13:'faq',tab14:'faq'
+};
 window.addEventListener('message', e => {
   if(!e.data || e.data.type !== 'NAVIGATE_TAB') return;
   var tid = e.data.tabId || e.data.tab;
+  tid = _tabToSection[tid] || tid;
   var el = document.getElementById(tid);
   if(el) el.scrollIntoView({behavior:'smooth'});
 });
