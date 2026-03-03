@@ -67,41 +67,119 @@
   // 2. 카카오 로그인
   // ============================================
 
+  var _loginInProgress = false;
+
   function kakaoLogin() {
     if (!window.Kakao || !Kakao.isInitialized()) {
       alert('카카오 SDK가 로드되지 않았습니다. 페이지를 새로고침해주세요.');
       return;
     }
 
+    if (_loginInProgress) {
+      console.log('[Auth] 로그인 이미 진행 중');
+      return;
+    }
+    _loginInProgress = true;
+
+    // 기존 카카오 토큰 정리 (세션 충돌 방지)
+    try {
+      if (Kakao.Auth.getAccessToken()) {
+        console.log('[Auth] 기존 카카오 토큰 정리');
+        Kakao.Auth.setAccessToken(null);
+      }
+    } catch (e) { }
+
+    // 로딩 상태 표시
+    var loginBtn = document.getElementById('kakao-login-btn');
+    var originalHTML = loginBtn ? loginBtn.innerHTML : '';
+    if (loginBtn) {
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 18 18"><path fill="#000" d="M9 1C4.58 1 1 3.79 1 7.21c0 2.17 1.45 4.08 3.64 5.18-.16.57-.58 2.07-.67 2.39-.1.39.14.39.3.28.12-.08 1.93-1.31 2.71-1.84.65.09 1.32.14 2.02.14 4.42 0 8-2.79 8-6.21C17 3.79 13.42 1 9 1z"/></svg> 인증 대기 중...';
+    }
+
+    function resetBtn() {
+      _loginInProgress = false;
+      if (loginBtn) {
+        loginBtn.innerHTML = originalHTML;
+        // consent 체크 상태에 따라 disabled 결정
+        var reqBoxes = document.querySelectorAll('.consent-req:not([disabled])');
+        var allReqChecked = Array.prototype.every.call(reqBoxes, function(c) { return c.checked; });
+        loginBtn.disabled = !allReqChecked;
+      }
+    }
+
+    // 45초 타임아웃
+    var loginTimeout = setTimeout(function () {
+      console.warn('[Auth] 카카오 로그인 타임아웃 (45초)');
+      resetBtn();
+      alert('카카오 인증이 완료되지 않았습니다.\n\n팝업 창이 열려있다면 닫아주시고,\n페이지를 새로고침 후 다시 시도해주세요.');
+    }, 45000);
+
+    // 토큰 폴링 (팝업 콜백이 실패해도 토큰이 설정되었는지 확인)
+    var pollCount = 0;
+    var pollTimer = setInterval(function () {
+      pollCount++;
+      try {
+        var token = Kakao.Auth.getAccessToken();
+        if (token) {
+          console.log('[Auth] 토큰 폴링으로 감지 (팝업 콜백 우회)');
+          clearInterval(pollTimer);
+          clearTimeout(loginTimeout);
+          proceedWithKakaoUser(resetBtn);
+        }
+      } catch (e) { }
+      if (pollCount >= 90) { // 90초까지 폴링
+        clearInterval(pollTimer);
+      }
+    }, 1000);
+
+    console.log('[Auth] 카카오 로그인 시도...');
+
     Kakao.Auth.login({
       success: function (authObj) {
-        console.log('[Auth] Kakao login success, getting user info...');
-
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function (res) {
-            console.log('[Auth] Kakao user info:', res);
-
-            var kakaoId = String(res.id);
-            var nickname = (res.properties && res.properties.nickname) ? res.properties.nickname : '사용자';
-            var email = (res.kakao_account && res.kakao_account.email) ? res.kakao_account.email : null;
-
-            sendKakaoLoginToServer(kakaoId, nickname, email);
-          },
-          fail: function (err) {
-            console.error('[Auth] Kakao user info error:', err);
-            alert('카카오 사용자 정보를 가져오지 못했습니다.');
-          }
-        });
+        clearInterval(pollTimer);
+        clearTimeout(loginTimeout);
+        console.log('[Auth] Kakao login success callback 정상 수신');
+        proceedWithKakaoUser(resetBtn);
       },
       fail: function (err) {
+        clearInterval(pollTimer);
+        clearTimeout(loginTimeout);
+        resetBtn();
         console.error('[Auth] Kakao login error:', err);
-        alert('카카오 로그인에 실패했습니다. 다시 시도해주세요.');
+        var msg = '카카오 로그인에 실패했습니다.';
+        if (err && err.error_description) {
+          msg += '\n' + err.error_description;
+        }
+        alert(msg + '\n\n다시 시도해주세요.');
+      }
+    });
+  }
+
+  function proceedWithKakaoUser(resetBtn) {
+    Kakao.API.request({
+      url: '/v2/user/me',
+      success: function (res) {
+        if (resetBtn) resetBtn();
+        console.log('[Auth] Kakao user info:', res);
+
+        var kakaoId = String(res.id);
+        var nickname = (res.properties && res.properties.nickname) ? res.properties.nickname : '사용자';
+        var email = (res.kakao_account && res.kakao_account.email) ? res.kakao_account.email : null;
+
+        sendKakaoLoginToServer(kakaoId, nickname, email);
+      },
+      fail: function (err) {
+        if (resetBtn) resetBtn();
+        console.error('[Auth] Kakao user info error:', err);
+        alert('카카오 사용자 정보를 가져오지 못했습니다.\n페이지를 새로고침 후 다시 시도해주세요.');
       }
     });
   }
 
   function sendKakaoLoginToServer(kakaoId, nickname, email) {
+    console.log('[Auth] 서버에 카카오 로그인 요청:', { kakaoId: kakaoId, nickname: nickname, email: email });
+
     fetch(API_BASE, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -112,8 +190,13 @@
         email: email
       })
     })
-    .then(function (res) { return res.json(); })
+    .then(function (res) {
+      console.log('[Auth] 서버 응답 상태:', res.status);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
     .then(function (data) {
+      console.log('[Auth] 서버 응답 데이터:', data);
       if (data.success) {
         saveSession(data.token, data.user);
         updateUI(data.user);
@@ -126,12 +209,13 @@
 
         console.log('[Auth] 카카오 로그인 성공:', data.user.name, '(visit:', data.user.visit_count, ')');
       } else {
+        console.error('[Auth] 서버 로그인 실패:', data);
         alert('로그인 실패: ' + (data.error || '알 수 없는 오류'));
       }
     })
     .catch(function (e) {
       console.error('[Auth] Server error:', e);
-      alert('서버 연결 실패');
+      alert('서버 연결에 실패했습니다.\n잠시 후 다시 시도해주세요.\n\n오류: ' + e.message);
     });
   }
 
@@ -143,13 +227,18 @@
     // 남은 로그 전송
     flushLogs(true);
 
-    // 카카오 로그아웃
-    if (window.Kakao && Kakao.Auth && Kakao.Auth.getAccessToken()) {
+    // 카카오 로그아웃 + 토큰 정리
+    if (window.Kakao && Kakao.Auth) {
       try {
-        Kakao.Auth.logout(function () {
-          console.log('[Auth] Kakao logout');
-        });
-      } catch (e) { }
+        if (Kakao.Auth.getAccessToken()) {
+          Kakao.Auth.logout(function () {
+            console.log('[Auth] Kakao logout 완료');
+          });
+        }
+        Kakao.Auth.setAccessToken(null);
+      } catch (e) {
+        console.log('[Auth] Kakao logout 중 에러 (무시):', e);
+      }
     }
 
     clearSession();

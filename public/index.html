@@ -170,6 +170,14 @@ body:not(.loaded) #hero::after{opacity:1}
 .reason-list li:last-child{border:none}
 .reason-list li strong{color:var(--text-dark);font-weight:600}
 
+/* ═══ FACULTY GRID ═══ */
+.faculty-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-top:16px}
+.fac-card{background:#fff;border-radius:12px;padding:16px 14px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.3s,box-shadow 0.3s}
+.fac-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
+.fac-name{font-size:15px;font-weight:700;color:var(--charcoal);margin-bottom:4px}
+.fac-role{font-size:11px;color:var(--gold-dark);font-weight:500;margin-left:4px}
+.fac-field{font-size:12px;color:var(--text-medium);line-height:1.5}
+
 /* ═══ DASHBOARD ═══ */
 .stat-hero{text-align:center;margin-bottom:36px}
 .stat-num{font-family:'DM Serif Display',serif;font-size:clamp(64px,16vw,120px);line-height:1;color:var(--gold-dark)}
@@ -403,12 +411,20 @@ body:not(.loaded) #hero::after{opacity:1}
   /* Donut chart stack */
   .donut-wrap{flex-direction:column}
 }
+@media(max-width:640px){
+  .track-grid{grid-template-columns:1fr!important}
+  .stat-row{grid-template-columns:repeat(2,1fr)!important}
+  .faculty-grid{grid-template-columns:repeat(3,1fr)}
+  .career-fusion-grid{grid-template-columns:1fr!important}
+}
 @media(max-width:440px){
   section{padding:48px 16px}
   #heygen-pip{width:280px;height:158px}
   .syn-c{width:170px;height:170px;font-size:13px}
   .donut{width:160px;height:160px}
   .nav-dots{right:6px}
+  /* Stats grid mobile */
+  .track-grid{grid-template-columns:1fr!important}
   /* Survey mobile */
   .likert{gap:4px}
   .likert label span{width:34px;height:34px;font-size:12px}
@@ -480,46 +496,111 @@ body:not(.loaded) #hero::after{opacity:1}
 
 
 <!-- ═══════════════════════════════════════ -->
-<!-- 1 · RESEARCH (cream)                   -->
+<!-- 0.5 · EDUCATION GOALS (cream)          -->
 <!-- ═══════════════════════════════════════ -->
-<section id="research" class="sec-cream">
+<section id="goals" class="sec-cream">
   <div class="si">
-    <p class="stag stag-dark reveal">01 · Research</p>
-    <h2 class="sh sh-md reveal rv1" style="color:var(--text-dark)">경영학에서 실제로<br><span class="ac-dark">어떤 연구</span>를 하나요?</h2>
+    <p class="stag stag-dark reveal">Education Goals</p>
+    <h2 class="sh sh-md reveal rv1" style="color:var(--text-dark)">어떤 <span class="ac-dark">인재</span>를 키우나요?</h2>
+    <p class="ss ss-dark reveal rv2">차의과학대학교 헬스케어융합학부 경영학전공은<br>세 가지 핵심 역량을 갖춘 인재를 양성합니다.</p>
     <hr class="hdiv hdiv-gold reveal rv1"/>
 
-    <div class="carousel reveal rv2">
-      <div class="reel">
-      <article><div class="card-light" data-tilt>
-        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c0 3.771 0 7.657 1.318 8.828C5.636 22 7.758 22 12 22s6.364 0 7.682-1.172S21 15.771 21 12"/><path d="m14.66 14.202l6.198-1.86c.41-.123.616-.184.768-.306a1 1 0 0 0 .3-.404c.074-.18.074-.395.074-.824c0-1.688 0-2.531-.33-3.175a3 3 0 0 0-1.303-1.303C19.723 6 18.88 6 17.192 6H6.808c-1.688 0-2.531 0-3.175.33A3 3 0 0 0 2.33 7.633C2 8.277 2 9.12 2 10.808c0 .429 0 .643.073.824a1 1 0 0 0 .3.404c.153.122.358.183.77.307l6.197 1.859"/><path stroke-linecap="round" d="M14 12.5h-4a.5.5 0 0 0-.5.5v2.162a.5.5 0 0 0 .314.464l.7.28a4 4 0 0 0 2.972 0l.7-.28a.5.5 0 0 0 .314-.464V13a.5.5 0 0 0-.5-.5ZM9.17 4a3.001 3.001 0 0 1 5.66 0"/></svg></div>
-        <h3>경영기획</h3>
-        <p>ESG 평가지표 개발, 기업지배구조 개선,<br>AI 시계열 예측</p>
-        <p class="cm">Applied Economics Letters · Journal of Forecasting</p>
-      </div></article>
-      <article><div class="card-light" data-tilt>
-        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 22h18"/><path d="M3 11c0-.943 0-1.414.293-1.707S4.057 9 5 9s1.414 0 1.707.293S7 10.057 7 11v6c0 .943 0 1.414-.293 1.707S5.943 19 5 19s-1.414 0-1.707-.293S3 17.943 3 17zm7-4c0-.943 0-1.414.293-1.707S11.057 5 12 5s1.414 0 1.707.293S14 6.057 14 7v10c0 .943 0 1.414-.293 1.707S12.943 19 12 19s-1.414 0-1.707-.293S10 17.943 10 17zm7-3c0-.943 0-1.414.293-1.707S18.057 2 19 2s1.414 0 1.707.293S21 3.057 21 4v13c0 .943 0 1.414-.293 1.707S19.943 19 19 19s-1.414 0-1.707-.293S17 17.943 17 17z"/></svg></div>
-        <h3>마케팅</h3>
-        <p>AI 서비스 로봇 수용도, MZ세대 SNS 전략,<br>K-콘텐츠 글로벌 전략</p>
-        <p class="cm">Psychology &amp; Marketing · Int'l J. Hospitality Mgmt</p>
-      </div></article>
-      <article><div class="card-light" data-tilt>
-        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 10h4"/><path d="M20.833 11h-2.602C16.446 11 15 12.343 15 14s1.447 3 3.23 3h2.603c.084 0 .125 0 .16-.002c.54-.033.97-.432 1.005-.933c.002-.032.002-.071.002-.148v-3.834c0-.077 0-.116-.002-.148c-.036-.501-.465-.9-1.005-.933c-.035-.002-.076-.002-.16-.002Z"/><path d="M20.965 11c-.078-1.872-.328-3.02-1.137-3.828C18.657 6 16.771 6 13 6h-3C6.229 6 4.343 6 3.172 7.172S2 10.229 2 14s0 5.657 1.172 6.828S6.229 22 10 22h3c3.771 0 5.657 0 6.828-1.172c.809-.808 1.06-1.956 1.137-3.828"/><path stroke-linecap="round" d="m6 6l3.735-2.477a3.24 3.24 0 0 1 3.53 0L17 6"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.991 14h.01"/></svg></div>
-        <h3>회계재무</h3>
-        <p>제약·바이오 R&amp;D 회계, 주주권 행사와 이익조정,<br>신용평가 적시성</p>
-        <p class="cm">회계학연구 · 경영학연구</p>
-      </div></article>
+    <div style="display:grid;grid-template-columns:1fr;gap:16px" class="reveal rv2">
+      <div class="card-light" style="display:flex;gap:20px;align-items:flex-start">
+        <div style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px">1</div>
+        <div>
+          <h3 style="font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:6px">창의적 문제 해결</h3>
+          <p style="font-size:14px;color:var(--text-medium);line-height:1.8">경영학의 원칙과 이론을 깊게 이해하여, 미래 산업인 <strong style="color:var(--gold-dark)">헬스케어에서 미해결 문제에 창의적으로 도전</strong>하고 해결 능력을 갖춘 인재를 양성합니다.</p>
+        </div>
       </div>
-      <div class="nav-zone bwd"></div>
-      <div class="nav-zone fwd"></div>
+      <div class="card-light" style="display:flex;gap:20px;align-items:flex-start">
+        <div style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px">2</div>
+        <div>
+          <h3 style="font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:6px">다학제 융합 역량</h3>
+          <p style="font-size:14px;color:var(--text-medium);line-height:1.8">과학적 접근을 통해 다양한 산업의 성장 가능성을 탐색하고, <strong style="color:var(--gold-dark)">다학제 지식을 융합하여 기업 성장과 사회적 가치 창출</strong>의 기회를 발굴하는 인재를 양성합니다.</p>
+        </div>
+      </div>
+      <div class="card-light" style="display:flex;gap:20px;align-items:flex-start">
+        <div style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px">3</div>
+        <div>
+          <h3 style="font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:6px">전략적 리더십</h3>
+          <p style="font-size:14px;color:var(--text-medium);line-height:1.8">경영학 전문 지식을 기반으로, <strong style="color:var(--gold-dark)">변화하는 경영 환경에 유연하게 대응하고 전략적 사고로 가치를 창출</strong>할 수 있는 실행 능력과 리더십을 갖춘 인재를 양성합니다.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="synergy reveal rv3">
-      <div class="syn-c" style="background:rgba(201,162,126,0.25);border:1.5px solid rgba(201,162,126,0.5);margin-right:-60px;z-index:1;padding-right:80px;color:var(--text-dark)">바이오<br>헬스케어</div>
-      <div class="syn-c" style="background:rgba(55,65,90,0.12);border:1.5px solid rgba(55,65,90,0.25);margin-left:-60px;z-index:1;padding-left:70px;color:var(--text-dark)">경영<br>전략</div>
-      <div class="syn-m" style="color:var(--gold-dark)">헬스케어<br>비즈니스 리더</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:32px" class="reveal rv3">
+      <div style="padding:12px 20px;background:var(--charcoal);color:var(--cream);border-radius:10px;font-size:13px;font-weight:500;text-align:center;line-height:1.6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-3px;margin-right:4px"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 14l2.293-2.293a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 0 1.414 0L17 10m0 0v2.5m0-2.5h-2.5"/></svg>
+        과학적 경영분석 기반<br>비즈니스 모델링
+      </div>
+      <div style="padding:12px 20px;background:var(--charcoal);color:var(--cream);border-radius:10px;font-size:13px;font-weight:500;text-align:center;line-height:1.6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-3px;margin-right:4px"><path d="M14.5 19.5h-5m5 0c0-.713 0-1.07.038-1.307c.123-.763.144-.812.631-1.412c.151-.186.711-.688 1.832-1.692A7.5 7.5 0 1 0 7 15.09c1.12 1.004 1.68 1.505 1.832 1.692c.487.6.508.649.63 1.412c.039.237.039.593.039 1.307"/><path stroke-linecap="round" stroke-linejoin="round" d="m12.786 8.5l-2.143 3h3l-2.143 3"/></svg>
+        자기주도식<br>액션러닝 교육
+      </div>
+      <div style="padding:12px 20px;background:var(--charcoal);color:var(--cream);border-radius:10px;font-size:13px;font-weight:500;text-align:center;line-height:1.6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-3px;margin-right:4px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 22h18"/><path d="M3 11c0-.943 0-1.414.293-1.707S4.057 9 5 9s1.414 0 1.707.293S7 10.057 7 11v6c0 .943 0 1.414-.293 1.707S5.943 19 5 19s-1.414 0-1.707-.293S3 17.943 3 17z"/><path d="M10 7c0-.943 0-1.414.293-1.707S11.057 5 12 5s1.414 0 1.707.293S14 6.057 14 7v10c0 .943 0 1.414-.293 1.707S12.943 19 12 19s-1.414 0-1.707-.293S10 17.943 10 17z"/><path d="M17 4c0-.943 0-1.414.293-1.707S18.057 2 19 2s1.414 0 1.707.293S21 3.057 21 4v13c0 .943 0 1.414-.293 1.707S19.943 19 19 19s-1.414 0-1.707-.293S17 17.943 17 17z"/></svg>
+        산업 트렌드 반영<br>실무 중심 교육
+      </div>
     </div>
-    <p class="reveal rv4" style="text-align:center;font-size:13px;color:var(--text-medium);margin-top:20px">R&amp;D 수천억, 출시 10년+ → 전략적 포트폴리오 관리 필수</p>
-    <p class="reveal rv5" style="text-align:center;margin-top:10px"><span style="font-size:20px;font-weight:700;color:var(--gold-dark)">졸업생 24.9%</span><span style="font-size:14px;color:var(--text-medium)"> 가 바이오헬스케어 진출</span></p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 1 · CONVERGENCE TRACKS (white)         -->
+<!-- ═══════════════════════════════════════ -->
+<section id="research" class="sec-white">
+  <div class="si">
+    <p class="stag stag-dark reveal">01 · Convergence Tracks</p>
+    <h2 class="sh sh-md reveal rv1" style="color:var(--text-dark)">AI × 바이오헬스케어 × 비즈니스<br><span class="ac-dark">융합형 인재</span>를 양성합니다</h2>
+    <p class="ss ss-dark reveal rv2">AI 기술력, 바이오헬스케어 도메인 전문성, 경영 전략 역량을 융합하여<br>미래 헬스케어 산업을 이끌 비즈니스 리더를 키웁니다.</p>
+    <hr class="hdiv hdiv-gold reveal rv1"/>
+
+    <!-- 통계 카드 -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:36px" class="reveal rv2 stat-row">
+      <div style="text-align:center;padding:16px;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
+        <p style="font-size:clamp(22px,5vw,30px);font-weight:900;color:var(--gold-dark)" data-count="24.9">0</p>
+        <p style="font-size:11px;color:var(--text-medium)">졸업생 바이오헬스케어 진출 %</p>
+      </div>
+      <div style="text-align:center;padding:16px;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
+        <p style="font-size:clamp(22px,5vw,30px);font-weight:900;color:var(--gold-dark)">6개</p>
+        <p style="font-size:11px;color:var(--text-medium)">진로별 특화 트랙</p>
+      </div>
+      <div style="text-align:center;padding:16px;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
+        <p style="font-size:clamp(22px,5vw,30px);font-weight:900;color:var(--gold-dark)">10년+</p>
+        <p style="font-size:11px;color:var(--text-medium)">바이오 R&amp;D→출시 소요</p>
+      </div>
+      <div style="text-align:center;padding:16px;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
+        <p style="font-size:clamp(22px,5vw,30px);font-weight:900;color:var(--gold-dark)">3개</p>
+        <p style="font-size:11px;color:var(--text-medium)">융합전공 연계</p>
+      </div>
+    </div>
+
+    <!-- 3 Convergence Tracks -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="reveal rv3 track-grid">
+      <div class="card-light" data-tilt style="border-top:3px solid var(--gold)">
+        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 14l2.293-2.293a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 0 1.414 0L17 10m0 0v2.5m0-2.5h-2.5"/></svg></div>
+        <h3 style="color:var(--gold-dark)">AI · 데이터 애널리틱스</h3>
+        <p>데이터 기반 의사결정과<br>AI 비즈니스 모델링</p>
+        <p style="font-size:11px;color:var(--text-light);margin-top:12px;border-top:1px solid var(--border-light);padding-top:10px">생성형AI 헬스케어 의사결정 · 의료 빅데이터 분석 · 머신러닝 활용 재무·마케팅 분석</p>
+      </div>
+      <div class="card-light" data-tilt style="border-top:3px solid var(--gold)">
+        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.5 13.572L12 21l-2.896-2.868m-6.117-8.104A5 5 0 0 1 12 7.006a5 5 0 1 1 7.5 6.572"/><path d="M3 13h2l2 3l2-6l1 3h3"/></svg></div>
+        <h3 style="color:var(--gold-dark)">바이오헬스케어 비즈니스</h3>
+        <p>헬스케어 산업 융합연구<br>기획 및 수행</p>
+        <p style="font-size:11px;color:var(--text-light);margin-top:12px;border-top:1px solid var(--border-light);padding-top:10px">디지털 치료제 비즈니스 모델 · 헬스케어 규제·인허가 전략 · 바이오제약 R&amp;D 포트폴리오</p>
+      </div>
+      <div class="card-light" data-tilt style="border-top:3px solid var(--gold)">
+        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c0 3.771 0 7.657 1.318 8.828C5.636 22 7.758 22 12 22s6.364 0 7.682-1.172S21 15.771 21 12"/><path d="m14.66 14.202l6.198-1.86c.41-.123.616-.184.768-.306a1 1 0 0 0 .3-.404c.074-.18.074-.395.074-.824c0-1.688 0-2.531-.33-3.175a3 3 0 0 0-1.303-1.303C19.723 6 18.88 6 17.192 6H6.808c-1.688 0-2.531 0-3.175.33A3 3 0 0 0 2.33 7.633C2 8.277 2 9.12 2 10.808c0 .429 0 .643.073.824a1 1 0 0 0 .3.404c.153.122.358.183.77.307l6.197 1.859"/><path stroke-linecap="round" d="M14 12.5h-4a.5.5 0 0 0-.5.5v2.162a.5.5 0 0 0 .314.464l.7.28a4 4 0 0 0 2.972 0l.7-.28a.5.5 0 0 0 .314-.464V13a.5.5 0 0 0-.5-.5ZM9.17 4a3.001 3.001 0 0 1 5.66 0"/></svg></div>
+        <h3 style="color:var(--gold-dark)">경영전략 · 재무</h3>
+        <p>전략 수립, 재무 분석,<br>마케팅 기획 역량</p>
+        <p style="font-size:11px;color:var(--text-light);margin-top:12px;border-top:1px solid var(--border-light);padding-top:10px">ESG 평가지표 개발 · 기업지배구조 개선 · MZ세대 헬스케어 소비자 행동 분석</p>
+      </div>
+    </div>
+
+    <!-- 학술 게재 -->
+    <p class="reveal rv4" style="text-align:center;font-size:12px;color:var(--text-light);margin-top:24px">학술 게재: Applied Economics Letters · Psychology &amp; Marketing · 회계학연구 · 경영학연구 · J. Biomedical Informatics</p>
   </div>
 </section>
 
@@ -529,86 +610,118 @@ body:not(.loaded) #hero::after{opacity:1}
 <!-- ═══════════════════════════════════════ -->
 <section id="curriculum" class="sec-charcoal">
   <div class="si">
-    <p class="stag stag-light reveal">02 · Curriculum</p>
-    <h2 class="sh sh-md reveal rv1"><span class="ac-gold">통합교육</span>으로 키우는<br>진짜 실력</h2>
-    <p class="ss ss-light reveal rv2">기업 경영은 퍼즐과 같아서, 한 조각만으로는 전체 그림을 볼 수 없어요.<br>경영학 + AI 브릿지 과목으로 실무 역량을 키웁니다.</p>
+    <p class="stag stag-light reveal">02 · Convergence Pathway</p>
+    <h2 class="sh sh-md reveal rv1"><span class="ac-gold">비즈니스 코어</span> → 전문 트랙<br>→ 융합 캡스톤</h2>
+    <p class="ss ss-light reveal rv2">1·2학년 비즈니스 코어 모듈로 경영학 기초를 다지고,<br>3·4학년에는 관심 트랙을 선택하여 전문성을 키웁니다.</p>
 
     <div class="timeline reveal rv2" style="border-color:var(--border-dark)">
       <div class="tl-item" style="color:var(--text-white)">
-        <p class="tl-yr" style="color:var(--gold)">1학년 — 기초</p>
-        <p class="tl-t" style="color:var(--text-white)">경영학원론, 경제학원리, 회계원리</p>
-        <p class="tl-d" style="color:var(--text-white-dim)">기업 경영의 전체 그림을 이해하는 첫 단계</p>
+        <p class="tl-yr" style="color:var(--gold)">STEP 1 · 2학년 1학기 — 비즈니스 코어</p>
+        <p class="tl-t" style="color:var(--text-white)">경영학원론, 경제학, 회계원리, 조직행동론</p>
+        <p class="tl-d" style="color:var(--text-white-dim)">경영학 전공자로서 알아야 할 기본기와 자본주의·재무회계의 기초를 다집니다</p>
       </div>
       <div class="tl-item">
-        <p class="tl-yr" style="color:var(--gold)">2학년 — AI 브릿지</p>
-        <p class="tl-t" style="color:var(--text-white)">AI경영사고와 데이터리터러시, AI기반 마케팅 애널리틱스</p>
-        <p class="tl-d" style="color:var(--text-white-dim)">넷플릭스·스타벅스 사례로 AI+경영 기초를 다지고, SNS 감성분석과 생성형AI 광고 카피를 경험합니다</p>
+        <p class="tl-yr" style="color:var(--gold)">STEP 2 · 2학년 2학기 — 전공 기초</p>
+        <p class="tl-t" style="color:var(--text-white)">재무관리, 마케팅원론, 기술경영론, 소비자심리</p>
+        <p class="tl-d" style="color:var(--text-white-dim)">재무회계, 원가관리회계, 창의적비즈니스모델링, 헬스케어경영조직론</p>
       </div>
       <div class="tl-item">
-        <p class="tl-yr" style="color:var(--gold)">3학년 — 심화</p>
-        <p class="tl-t" style="color:var(--text-white)">AI기반 재무데이터분석, 전공 심화 과목</p>
-        <p class="tl-d" style="color:var(--text-white-dim)">주식 시계열 분석, 뉴스-주가 상관분석 등 실무 데이터 역량</p>
+        <p class="tl-yr" style="color:var(--gold)">STEP 3 · 3학년 1학기 — 전공 심화</p>
+        <p class="tl-t" style="color:var(--text-white)">경영전략론, 서비스마케팅, 국제마케팅, 투자론, 금융시장론</p>
+        <p class="tl-d" style="color:var(--text-white-dim)">세무회계, 경영통계, 비즈니스애널리틱스, 조직개발과컨설팅, 비즈니스혁신과트렌드</p>
+        <p class="tl-t" style="color:#2ecc71;font-size:12px;margin-top:6px">헬스케어 융합: 헬스케어비즈니스, 헬스케어소비자행동, 헬스케어마켓분석</p>
       </div>
       <div class="tl-item">
-        <p class="tl-yr" style="color:var(--gold)">4학년 — 캡스톤</p>
-        <p class="tl-t" style="color:var(--text-white)">비즈니스AI 캡스톤 프로젝트</p>
-        <p class="tl-d" style="color:var(--text-white-dim)">실제 기업 현안을 AI로 해결하는 졸업 프로젝트</p>
+        <p class="tl-yr" style="color:var(--gold)">STEP 3 · 3학년 2학기 — 트랙 선택</p>
+        <p class="tl-t" style="color:var(--text-white)">인적자원관리, 마케팅리서치, 국제경영학, 재무분석및기업가치평가</p>
+        <p class="tl-d" style="color:var(--text-white-dim)">경영혁신사례분석, 마케팅애널리틱스, 회계정보시스템실무, 경영빅데이터분석</p>
+        <p class="tl-t" style="color:#2ecc71;font-size:12px;margin-top:6px">헬스케어 융합: 헬스케어인사실무, 헬스케어파이낸스</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-yr" style="color:var(--gold)">STEP 4 · 4학년 — 융합 캡스톤</p>
+        <p class="tl-t" style="color:var(--text-white)">CHA 바이오캡스톤디자인, 재무빅데이터분석, 투자자산운용</p>
+        <p class="tl-d" style="color:var(--text-white-dim)">팀 프로젝트로 실제 기업 현안을 분석하고 해결하는 종합 과목</p>
       </div>
     </div>
+    <p class="reveal rv3" style="margin-top:12px;font-size:11px;color:var(--text-white-dim)">* 편성 교과목은 전공 운영현황에 따라 일부 변동될 수 있습니다<br>* AI의료데이터학전공, 디지털보건의료전공과의 융합 교과목이 포함되어 있습니다</p>
 
     <div class="chips reveal rv3">
       <span class="chip" style="border-color:var(--gold);color:var(--gold);background:rgba(201,162,126,0.1)">경영기획</span>
       <span class="chip" style="border-color:var(--gold);color:var(--gold);background:rgba(201,162,126,0.1)">마케팅</span>
-      <span class="chip" style="border-color:var(--gold);color:var(--gold);background:rgba(201,162,126,0.1)">회계재무</span>
+      <span class="chip" style="border-color:var(--gold);color:var(--gold);background:rgba(201,162,126,0.1)">회계·세무·금융</span>
       <span class="chip" style="border-color:var(--text-white-dim);color:var(--text-white-dim);background:transparent">헬스케어 비즈니스</span>
       <span class="chip" style="border-color:var(--text-white-dim);color:var(--text-white-dim);background:transparent">비즈니스 애널리틱스</span>
     </div>
-    <p class="reveal rv4" style="margin-top:20px;font-size:12px;color:var(--text-white-dim)">재무 전문가도 마케팅 ROI를, 회계사도 인건비 구조를 이해해야 합니다. 협력기관: 조세재정연구원, 국회예산정책처, 금융감독원</p>
+    <p class="reveal rv4" style="margin-top:14px;font-size:12px;color:var(--text-white-dim)">자격증 연계: 경영지도사 · 회계사·세무사 · 전산회계·재경관리사 · 투자자산운용사·금융투자분석사 · 마케팅조사분석사 · 노무사</p>
   </div>
 </section>
 
 
 <!-- ═══════════════════════════════════════ -->
-<!-- 3 · AI CONVERGENCE (beige)             -->
+<!-- 3 · CONVERGENCE & FACULTY (beige)      -->
 <!-- ═══════════════════════════════════════ -->
 <section id="ai" class="sec-beige">
   <div class="si">
-    <p class="stag reveal" style="color:rgba(28,28,28,0.5)">03 · AI Convergence</p>
-    <h2 class="sh sh-md reveal rv1" style="color:var(--charcoal)">AI 시대, <span class="ac-charcoal">경영학이<br>더 중요해집니다</span></h2>
-    <p class="ss reveal rv2" style="color:rgba(28,28,28,0.6)">GPU 서버부터 실감미디어 스튜디오까지, 실습 환경이 완비되어 있습니다.</p>
+    <p class="stag reveal" style="color:rgba(28,28,28,0.5)">03 · Convergence</p>
+    <h2 class="sh sh-md reveal rv1" style="color:var(--charcoal)">차의과학대<br><span class="ac-charcoal">경영학만의 차별성</span></h2>
+    <p class="ss reveal rv2" style="color:rgba(28,28,28,0.6)">과학적 경영분석에 기반한 비즈니스 모델링,<br>자기주도식 액션러닝, 산업 트렌드를 반영한 실무 중심 교육.</p>
 
     <div class="bento reveal rv2">
       <div class="card-beige lg" data-tilt>
         <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 19.5h-5m5 0c0-.713 0-1.07.038-1.307c.123-.763.144-.812.631-1.412c.151-.186.711-.688 1.832-1.692A7.5 7.5 0 1 0 7 15.09c1.12 1.004 1.68 1.505 1.832 1.692c.487.6.508.649.63 1.412c.039.237.039.593.039 1.307m5 0c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.349.2-.816.2-1.751.2s-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549c-.201-.348-.201-.815-.201-1.75"/><path stroke-linecap="round" stroke-linejoin="round" d="m12.786 8.5l-2.143 3h3l-2.143 3"/></svg></div>
-        <h3>AI비즈니스 분석 랩</h3>
-        <p>40석 GPU서버, 클라우드 크레딧,<br>생성형AI API 제공<br><br>경영학 실습에 최적화된 분석 환경에서 실제 데이터를 다루며 배웁니다.</p>
+        <h3>복수전공으로 열리는 융합 진로</h3>
+        <p style="font-size:13px;line-height:2.2">
+          <strong style="color:var(--gold-dark)">경영학 + 디지털보건의료</strong> → 헬스케어 비즈니스<br>
+          <strong style="color:var(--gold-dark)">경영학 + AI의료데이터학</strong> → 비즈니스 애널리틱스<br>
+          <strong style="color:var(--gold-dark)">경영학 + 바이오계열</strong> → 바이오기술 혁신전략·마케팅·기업가치평가<br>
+          <span style="font-size:11px;color:var(--text-medium);margin-left:16px">(세포·유전자재생의학, 시스템생명과학, 바이오식의약학)</span><br>
+          <strong style="color:var(--gold-dark)">경영학 + 미디어커뮤니케이션학</strong> → 미디어 경영 (IR, CR, PR)<br>
+          <strong style="color:var(--gold-dark)">경영학 + 심리학</strong> → 비즈니스 행동과학 (종업원·소비자·투자자)<br>
+          <strong style="color:var(--gold-dark)">경영학 + 스포츠의학</strong> → 스포츠마케팅
+        </p>
       </div>
       <div class="card-beige r1" data-tilt>
-        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M15.414 10.941c.781.462.781 1.656 0 2.118l-4.72 2.787C9.934 16.294 9 15.71 9 14.786V9.214c0-.924.934-1.507 1.694-1.059z"/></svg></div>
-        <h3>실감미디어 스튜디오</h3>
-        <p>LED월+크로마키, AI피드백,<br>투자자 피칭 리허설</p>
+        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c0 3.771 0 7.657 1.318 8.828C5.636 22 7.758 22 12 22s6.364 0 7.682-1.172S21 15.771 21 12"/><path d="m14.66 14.202l6.198-1.86c.41-.123.616-.184.768-.306a1 1 0 0 0 .3-.404c.074-.18.074-.395.074-.824c0-1.688 0-2.531-.33-3.175a3 3 0 0 0-1.303-1.303C19.723 6 18.88 6 17.192 6H6.808c-1.688 0-2.531 0-3.175.33A3 3 0 0 0 2.33 7.633C2 8.277 2 9.12 2 10.808c0 .429 0 .643.073.824a1 1 0 0 0 .3.404c.153.122.358.183.77.307l6.197 1.859"/><path stroke-linecap="round" d="M14 12.5h-4a.5.5 0 0 0-.5.5v2.162a.5.5 0 0 0 .314.464l.7.28a4 4 0 0 0 2.972 0l.7-.28a.5.5 0 0 0 .314-.464V13a.5.5 0 0 0-.5-.5ZM9.17 4a3.001 3.001 0 0 1 5.66 0"/></svg></div>
+        <h3>자기주도식<br>액션러닝</h3>
+        <p>경영 현장의 문제 해결,<br>기업사례분석 경진대회</p>
       </div>
       <div class="card-beige r2" data-tilt>
-        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 14l2.293-2.293a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 0 1.414 0L17 10m0 0v2.5m0-2.5h-2.5"/></svg></div>
-        <h3>실시간 대시보드</h3>
-        <p>Bloomberg 연동, 뉴스감성·트렌드<br>자동 모니터링</p>
+        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.5 13.572L12 21l-2.896-2.868m-6.117-8.104A5 5 0 0 1 12 7.006a5 5 0 1 1 7.5 6.572"/><path d="M3 13h2l2 3l2-6l1 3h3"/></svg></div>
+        <h3>졸업 인증제</h3>
+        <p>캡스톤디자인 + 자격증<br>+ 공모전 + 진로준비</p>
       </div>
     </div>
 
-    <div class="bento-b reveal rv3">
-      <div class="card-beige" data-tilt>
-        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.5 13.572L12 21l-2.896-2.868m-6.117-8.104A5 5 0 0 1 12 7.006a5 5 0 1 1 7.5 6.572"/><path d="M3 13h2l2 3l2-6l1 3h3"/></svg></div>
-        <h3>헬스케어AI 샌드박스</h3>
-        <p>비식별 진료데이터, 건보공단 데이터 분석 환경</p>
+    <!-- 교수진 -->
+    <h3 class="reveal rv3" style="margin-top:48px;font-size:18px;font-weight:700;color:var(--charcoal);text-align:center">교수진</h3>
+    <div class="faculty-grid reveal rv3">
+      <div class="fac-card">
+        <p class="fac-name">김주헌 <span class="fac-role">학장</span></p>
+        <p class="fac-field">국제경영학</p>
       </div>
-      <div class="card-beige" data-tilt>
-        <h3 style="margin-bottom:12px">AI 시대, 경영학이 중요한 이유</h3>
-        <ul class="reason-list">
-          <li><strong>전략적 의사결정</strong> — AI가 분석하지만, 최종 판단은 사람의 몫</li>
-          <li><strong>이해관계자 조정</strong> — 주주·직원·고객 사이의 균형</li>
-          <li><strong>윤리적 경영</strong> — ESG 경영, 데이터 윤리 판단</li>
-          <li><strong>비즈니스 전환</strong> — AI·빅데이터를 사업 모델로 전환</li>
-        </ul>
+      <div class="fac-card">
+        <p class="fac-name">김억환</p>
+        <p class="fac-field">인사조직, 경영전략</p>
+      </div>
+      <div class="fac-card">
+        <p class="fac-name">김용환</p>
+        <p class="fac-field">기술경제, 국제경제</p>
+      </div>
+      <div class="fac-card">
+        <p class="fac-name">김태동</p>
+        <p class="fac-field">회계세무</p>
+      </div>
+      <div class="fac-card">
+        <p class="fac-name">박대근</p>
+        <p class="fac-field">재무금융</p>
+      </div>
+      <div class="fac-card">
+        <p class="fac-name">이희정</p>
+        <p class="fac-field">마케팅, 관광심리, 서비스</p>
+      </div>
+      <div class="fac-card">
+        <p class="fac-name">김종석</p>
+        <p class="fac-field">기술경영, 혁신관리</p>
       </div>
     </div>
   </div>
@@ -677,6 +790,69 @@ body:not(.loaded) #hero::after{opacity:1}
 
 
 <!-- ═══════════════════════════════════════ -->
+<!-- 4.5 · CAREER DETAIL (beige)            -->
+<!-- ═══════════════════════════════════════ -->
+<section id="career-detail" class="sec-beige">
+  <div class="si">
+    <p class="stag reveal" style="color:rgba(28,28,28,0.5)">Career Fields</p>
+    <h2 class="sh sh-md reveal rv1" style="color:var(--charcoal)">5대 <span class="ac-charcoal">진로 분야</span></h2>
+    <p class="ss reveal rv2" style="color:rgba(28,28,28,0.6)">경영학전공 졸업 후 진출할 수 있는 핵심 진로와 향후 전망입니다.</p>
+
+    <div style="display:grid;gap:16px" class="reveal rv2">
+      <!-- 경영기획 -->
+      <div class="card-beige" data-tilt>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <span style="background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">경영기획</span>
+          <span style="font-size:12px;color:var(--text-light)">48.9%</span>
+        </div>
+        <p style="font-size:14px;color:var(--text-dark);line-height:1.8;margin-bottom:8px"><strong>하는 일:</strong> 산업·시장 동향을 분석하여 기업의 중장기 비전과 목표를 설정하고, 연간 목표 달성 상황을 모니터링하는 전략 수립 업무</p>
+        <p style="font-size:12px;color:var(--text-medium);line-height:1.7"><strong>전망:</strong> 디지털화와 글로벌 경쟁 심화로 모든 산업에서 효율적이고 창의적인 경영전략이 필요해지고 있습니다</p>
+        <p style="font-size:11px;color:var(--text-light);margin-top:6px">핵심 역량: 경영학 기초 이해 · 비즈니스 트렌드 분석 · 조직·기술경영과 기업전략 수립</p>
+      </div>
+
+      <!-- 마케팅 -->
+      <div class="card-beige" data-tilt>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <span style="background:var(--beige);color:var(--charcoal);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">마케팅</span>
+          <span style="font-size:12px;color:var(--text-light)">14.0%</span>
+        </div>
+        <p style="font-size:14px;color:var(--text-dark);line-height:1.8;margin-bottom:8px"><strong>하는 일:</strong> 소비자의 수요와 행동을 분석하여 타겟 고객군을 선정하고, 효과적인 마케팅 전략과 캠페인을 수립하는 전문 업무</p>
+        <p style="font-size:12px;color:var(--text-medium);line-height:1.7"><strong>전망:</strong> 디지털 마케팅 전문가 수요 급증, 고객관계관리(CRM) 중요성 증가로 마케팅 전문가 고용 가능성이 크게 상승</p>
+        <p style="font-size:11px;color:var(--text-light);margin-top:6px">핵심 역량: 소비자 분석 및 마케팅 기획 · 글로벌 시장의 이해와 대응</p>
+      </div>
+
+      <!-- 회계·세무·금융 -->
+      <div class="card-beige" data-tilt>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <span style="background:var(--gold-dark);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">회계·세무·금융</span>
+          <span style="font-size:12px;color:var(--text-light)">20.8%</span>
+        </div>
+        <p style="font-size:14px;color:var(--text-dark);line-height:1.8;margin-bottom:8px"><strong>하는 일:</strong> 기업의 거래 기록과 재무제표 작성을 통해 재무 상태를 파악·분석하고, 기업 경영의 안정성과 성장 가능성을 평가</p>
+        <p style="font-size:12px;color:var(--text-medium);line-height:1.7"><strong>전망:</strong> 투명한 회계와 국제 회계 기준 다양화로 전문 인력 수요 증가, 핀테크 산업 성장으로 금융 전문가 필요성 증대</p>
+        <p style="font-size:11px;color:var(--text-light);margin-top:6px">핵심 역량: 재무제표와 금융의 이해 · 회계세무실무 · 금융투자분석</p>
+      </div>
+
+      <!-- 융합 진로 2개 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="career-fusion-grid">
+        <div class="card-beige" data-tilt>
+          <span style="background:#b8b0a6;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">헬스케어 비즈니스</span>
+          <span style="font-size:10px;color:var(--gold-dark);margin-left:6px">융합진로</span>
+          <p style="font-size:13px;color:var(--text-dark);line-height:1.8;margin-top:10px"><strong>하는 일:</strong> 의료 데이터와 분석 기술을 활용, 디지털 헬스케어 솔루션 개발과 운용</p>
+          <p style="font-size:12px;color:var(--text-medium);line-height:1.7;margin-top:6px"><strong>전망:</strong> 원격진료·디지털 헬스케어 중요성 증대, 개인화 의료 서비스 수요 급증</p>
+        </div>
+        <div class="card-beige" data-tilt>
+          <span style="background:#b8b0a6;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">비즈니스 애널리틱스</span>
+          <span style="font-size:10px;color:var(--gold-dark);margin-left:6px">융합진로</span>
+          <p style="font-size:13px;color:var(--text-dark);line-height:1.8;margin-top:10px"><strong>하는 일:</strong> 데이터를 수집·정제·분석하여 경영 전략 설정, 머신러닝과 통계학 활용 인사이트 도출</p>
+          <p style="font-size:12px;color:var(--text-medium);line-height:1.7;margin-top:6px"><strong>전망:</strong> 다양한 산업에서 데이터 분석 전문가 수요 증가, AI 기반 경영 의사결정 확산</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
 <!-- 5 · ONLY CHA (charcoal)                -->
 <!-- ═══════════════════════════════════════ -->
 <section id="only-cha" class="sec-charcoal">
@@ -722,6 +898,7 @@ body:not(.loaded) #hero::after{opacity:1}
       </div>
     </div>
     <p class="compare-note reveal rv4" style="color:var(--text-white-dim)">산학연병 인프라 위에서, 경영학과의 시너지가 극대화됩니다.</p>
+    <p class="compare-note reveal rv5" style="color:var(--gold);font-size:12px;margin-top:8px">스포츠의학 복수전공 시 78조 원 규모의 스포츠산업 진출 유리</p>
   </div>
 </section>
 
@@ -743,8 +920,8 @@ body:not(.loaded) #hero::after{opacity:1}
       </div>
       <div class="card-light" data-tilt>
         <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="6" r="4"/><path stroke-linecap="round" d="M15 9a3 3 0 1 0 0-6"/><ellipse cx="9" cy="17" rx="7" ry="4"/><path stroke-linecap="round" d="M18 14c1.754.385 3 1.359 3 2.5c0 1.03-1.014 1.923-2.5 2.37"/></svg></div>
-        <h3>의사소통 능력</h3>
-        <p>발표, 토론, 설득 — 팀워크 기반 실무 역량</p>
+        <h3>팀프로젝트 & 의사소통</h3>
+        <p>기업 경영 = 퍼즐 맞추기. 재무팀↔마케팅팀, 전략팀↔운영팀 크로스펑션 협업. 발표·토론·설득 실무 역량과 리더십을 기릅니다.</p>
       </div>
       <div class="card-light" data-tilt>
         <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8a6 6 0 1 1 12 0v5a6 6 0 0 1-12 0z"/><path stroke-linecap="round" d="M10 6.5s.473-.5 2-.5s2 .5 2 .5m-4 3s.473-.5 2-.5s2 .5 2 .5m7 1.5v2a9 9 0 1 1-18 0v-2"/></svg></div>
@@ -813,7 +990,23 @@ body:not(.loaded) #hero::after{opacity:1}
       </div>
       <div class="faq-item">
         <button class="faq-q">바이오와 경영을 같이 배우면 어떤 장점이 있나요? <span class="fa">&#9662;</span></button>
-        <div class="faq-a"><div class="faq-ai">차의과학대학교는 산·학·연·병 인프라가 결합된 독보적인 환경에서 경영학을 배울 수 있어요. 졸업생의 24.9%가 바이오헬스케어 분야로 진출하며, 차병원 네트워크 취업(10.9%), 건강보험공단 빅데이터 활용 등 차별화된 기회를 제공합니다.</div></div>
+        <div class="faq-a"><div class="faq-ai">차의과학대학교는 산·학·연·병 인프라가 결합된 독보적인 환경에서 경영학을 배울 수 있어요. 졸업생의 24.9%가 바이오헬스케어 분야로 진출하며, 차병원 네트워크 취업(10.9%), 건강보험공단 빅데이터 활용 등 차별화된 기회를 제공합니다. 바이오산업은 R&D 비용이 수천억 원에 달하고 제품 출시까지 10년 이상 걸리기 때문에, 전략적 포트폴리오 관리와 파이낸싱 능력을 갖춘 '바이오 이해 경영인'의 가치가 매우 높습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">예술이나 문화 쪽에 관심이 많은데 경영학이 도움될까요? <span class="fa">&#9662;</span></button>
+        <div class="faq-a"><div class="faq-ai">물론이죠! 공연기획(PD), 미술관 큐레이터, 문화마케터, 엔터테인먼트 경영, 축제·이벤트 기획 등 문화예술경영 분야로 진출할 수 있습니다. 실제로 FNC엔터테인먼트, 환경재단(서울환경영화제), 광고대행사, 방송사 등에 졸업생이 취업하고 있어요. 예술도 관객이 있어야 하고, 수익모델 설계가 필수이기 때문에 경영학은 예술의 날개가 됩니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">영상이나 광고를 좋아하는데 경영학이랑 연결할 수 있나요? <span class="fa">&#9662;</span></button>
+        <div class="faq-a"><div class="faq-ai">영상 제작 + 경영 전략 = 최강 콘텐츠 크리에이터입니다! 마케팅 프레임워크로 영상을 기획하고, 타겟 분석으로 콘텐츠를 최적화하며, A/B 테스트와 ROI 측정으로 효과를 검증할 수 있어요. 단순히 예쁜 영상이 아니라 '목표를 달성하는 콘텐츠'를 만드는 능력 — 이것이 데이터 기반 크리에이티브입니다. 미디어커뮤니케이션학과의 복수전공을 통해 시너지를 극대화할 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">디지털보건의료 vs AI의료데이터, 뭘 같이 공부하는 게 나을까요? <span class="fa">&#9662;</span></button>
+        <div class="faq-a"><div class="faq-ai">두 분야 모두 매력적이지만 방향이 다릅니다! <strong>디지털보건의료</strong>는 서비스 기획 중심으로, 병원 경영기획·디지털 헬스 서비스 기획·헬스케어 스타트업 등 사람과의 소통이 중요한 분야에요. <strong>AI의료데이터</strong>는 데이터 분석 중심으로, 헬스케어 데이터 분석가·보험 리스크 분석·임상데이터 관리 등 정량적 의사결정 분야입니다. 사람과 소통이 좋다면 → 디지털보건의료, 데이터 분석이 좋다면 → AI의료데이터를 추천합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">스포츠의학 복수전공도 가능한가요? <span class="fa">&#9662;</span></button>
+        <div class="faq-a"><div class="faq-ai">네! 차의과학대의 스포츠의학 전공과 복수전공이 가능합니다. 국내 스포츠산업 규모는 78조 원에 달하며, 스포츠 마케팅·구단 경영·스포츠 에이전트·헬스케어 피트니스 등 다양한 진로가 열려요. 경영학의 마케팅·재무·전략 지식과 스포츠의학의 전문성이 결합되면 스포츠 비즈니스 분야에서 독보적인 경쟁력을 갖출 수 있습니다.</div></div>
       </div>
     </div>
   </div>
@@ -866,9 +1059,18 @@ body:not(.loaded) #hero::after{opacity:1}
       </div>
 
       <!-- 만족근거 -->
-      <div class="sq">
-        <p class="sq-label"><span class="sq-num">2</span>위 점수를 준 이유를 알려주세요</p>
-        <textarea id="sv-reason" rows="3" placeholder="만족 또는 불만족의 이유를 적어주세요" style="width:100%;padding:12px 14px;border:1px solid var(--border-light);border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;resize:vertical;outline:none;background:#fff"></textarea>
+      <div class="sq" data-q="reason">
+        <p class="sq-label"><span class="sq-num">2</span>만족 또는 불만족의 주된 이유는?</p>
+        <div class="sv-options" style="flex-direction:column">
+          <label class="sv-chip"><input type="radio" name="reason" value="대화가 자연스러워서" onchange="document.getElementById('sv-reason-etc').style.display='none'"><span>대화가 자연스러워서</span></label>
+          <label class="sv-chip"><input type="radio" name="reason" value="학과 정보가 유용해서" onchange="document.getElementById('sv-reason-etc').style.display='none'"><span>학과 정보가 유용해서</span></label>
+          <label class="sv-chip"><input type="radio" name="reason" value="실제 상담 같은 느낌이라서" onchange="document.getElementById('sv-reason-etc').style.display='none'"><span>실제 상담 같은 느낌이라서</span></label>
+          <label class="sv-chip"><input type="radio" name="reason" value="음성/표정이 자연스러워서" onchange="document.getElementById('sv-reason-etc').style.display='none'"><span>음성/표정이 자연스러워서</span></label>
+          <label class="sv-chip"><input type="radio" name="reason" value="정보가 부족해서" onchange="document.getElementById('sv-reason-etc').style.display='none'"><span>정보가 부족해서</span></label>
+          <label class="sv-chip"><input type="radio" name="reason" value="발음/음성이 부자연스러워서" onchange="document.getElementById('sv-reason-etc').style.display='none'"><span>발음/음성이 부자연스러워서</span></label>
+          <label class="sv-chip"><input type="radio" name="reason" value="기타" onchange="document.getElementById('sv-reason-etc').style.display='block';document.getElementById('sv-reason-etc').focus()"><span>기타 (직접 입력)</span></label>
+        </div>
+        <input type="text" id="sv-reason-etc" placeholder="기타 사유를 입력해 주세요" maxlength="100" style="display:none;margin-top:10px;width:100%;padding:10px 14px;border:1px solid var(--border-light);border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;outline:none;background:#fff">
       </div>
 
       <!-- 학년 -->
@@ -1003,13 +1205,15 @@ document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
 document.querySelectorAll('[data-count]').forEach(el => {
   new IntersectionObserver(([e]) => {
     if(!e.isIntersecting) return;
-    const t = parseInt(el.dataset.count);
+    const t = parseFloat(el.dataset.count);
+    const isDecimal = String(t).indexOf('.') !== -1;
     const dur = 2000;
     const start = performance.now();
     (function up(now){
       const p = Math.min((now - start)/dur, 1);
       const ease = 1 - Math.pow(1-p, 3);
-      el.innerHTML = Math.round(t*ease) + '<span style="font-size:clamp(24px,5vw,40px)">%</span>';
+      const v = isDecimal ? (t*ease).toFixed(1) : Math.round(t*ease);
+      el.innerHTML = v + '<span style="font-size:clamp(24px,5vw,40px)">%</span>';
       if(p < 1) requestAnimationFrame(up);
     })(performance.now());
   }, {threshold:0.5}).observe(el);
@@ -1147,6 +1351,18 @@ function submitSurvey(){
     return;
   }
 
+  // 만족근거 필수
+  const reason = document.querySelector('input[name="reason"]:checked');
+  if(!reason){
+    alert('만족/불만족 이유를 선택해 주세요.');
+    return;
+  }
+  if(reason.value === '기타' && !document.getElementById('sv-reason-etc').value.trim()){
+    alert('기타 사유를 입력해 주세요.');
+    document.getElementById('sv-reason-etc').focus();
+    return;
+  }
+
   // 학년 필수
   const grade = document.querySelector('input[name="grade"]:checked');
   if(!grade){
@@ -1167,7 +1383,12 @@ function submitSurvey(){
   const payload = {
     action: 'survey_submit',
     satisfaction: parseInt(sat.value),
-    satisfaction_reason: document.getElementById('sv-reason').value.trim() || null,
+    satisfaction_reason: (function(){
+      const checked = document.querySelector('input[name="reason"]:checked');
+      if(!checked) return null;
+      if(checked.value === '기타') return document.getElementById('sv-reason-etc').value.trim() || '기타';
+      return checked.value;
+    })(),
     grade: grade.value,
     gender: gender.value,
     mbti: document.getElementById('sv-mbti').value.trim().toUpperCase() || null,
