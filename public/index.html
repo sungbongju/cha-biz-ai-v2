@@ -1451,13 +1451,8 @@ function showPIP(){ pc.classList.remove('hidden','minimized'); }
 /* ═══ PostMessage: NAVIGATE_TAB ═══ */
 window.addEventListener('message', e => {
   if(!e.data || e.data.type !== 'NAVIGATE_TAB') return;
-  const map = {
-    'research':'research','curriculum':'curriculum','ai':'ai',
-    'careers':'careers','only-cha':'only-cha','experience':'experience',
-    'faq':'faq','footer':'footer'
-  };
-  const id = map[e.data.tab] || e.data.tab;
-  const el = document.getElementById(id);
+  var tid = e.data.tabId || e.data.tab;
+  var el = document.getElementById(tid);
   if(el) el.scrollIntoView({behavior:'smooth'});
 });
 
