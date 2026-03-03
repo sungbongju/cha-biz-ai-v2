@@ -174,12 +174,15 @@ body:not(.loaded) #hero::after{opacity:1}
 .stat-hero{text-align:center;margin-bottom:36px}
 .stat-num{font-family:'DM Serif Display',serif;font-size:clamp(64px,16vw,120px);line-height:1;color:var(--gold-dark)}
 .stat-lbl{font-size:14px;color:var(--text-medium);margin-top:12px}
-.bar-chart{margin:36px 0}
-.bar-item{margin-bottom:18px}
-.bar-lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--text-dark)}
-.bar-lbl span:last-child{color:var(--gold-dark);font-weight:700}
-.bar-track{height:6px;background:var(--cream-dark);border-radius:3px;overflow:hidden}
-.bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--beige));width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+/* ═══ DONUT CHART ═══ */
+.donut-wrap{display:flex;align-items:center;justify-content:center;gap:36px;margin:36px 0;flex-wrap:wrap}
+.donut{position:relative;width:180px;height:180px;border-radius:50%;flex-shrink:0;background:conic-gradient(var(--gold) 0% 48.9%,var(--gold-dark) 48.9% 69.7%,var(--beige) 69.7% 83.7%,#b8b0a6 83.7% 100%);box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.donut::after{content:'';position:absolute;inset:28%;border-radius:50%;background:var(--warm-white)}
+.donut-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;font-size:11px;color:var(--text-medium);text-align:center;line-height:1.5;font-weight:500}
+.legend{display:flex;flex-direction:column;gap:14px}
+.legend-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-dark)}
+.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.legend-pct{font-weight:700;color:var(--gold-dark);margin-left:auto;padding-left:12px}
 .co-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:36px 0}
 .co-card{background:#fff;border:1px solid var(--border-light);border-radius:12px;padding:24px}
 .co-card h4{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text-dark)}
@@ -582,10 +585,15 @@ body:not(.loaded) #hero::after{opacity:1}
       <p class="stat-lbl">취업률 · 전국 평균 대비 우수</p>
     </div>
 
-    <div class="bar-chart reveal rv3">
-      <div class="bar-item"><div class="bar-lbl"><span>경영기획</span><span>48.9%</span></div><div class="bar-track"><div class="bar-fill" data-width="48.9"></div></div></div>
-      <div class="bar-item"><div class="bar-lbl"><span>회계·세무·금융</span><span>20.8%</span></div><div class="bar-track"><div class="bar-fill" data-width="20.8"></div></div></div>
-      <div class="bar-item"><div class="bar-lbl"><span>마케팅</span><span>14.0%</span></div><div class="bar-track"><div class="bar-fill" data-width="14.0"></div></div></div>
+    <p class="reveal rv2" style="text-align:center;font-size:13px;color:var(--text-medium);margin-bottom:4px">취업자 진출 분야 비율</p>
+    <div class="donut-wrap reveal rv3">
+      <div class="donut"><div class="donut-label">진출 분야<br>비율</div></div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>경영기획<span class="legend-pct">48.9%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--gold-dark)"></div>회계·세무·금융<span class="legend-pct">20.8%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--beige)"></div>마케팅<span class="legend-pct">14.0%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#b8b0a6"></div>기타<span class="legend-pct">16.3%</span></div>
+      </div>
     </div>
 
     <div class="co-grid reveal rv3">
@@ -629,31 +637,31 @@ body:not(.loaded) #hero::after{opacity:1}
 <!-- ═══════════════════════════════════════ -->
 <section id="only-cha" class="sec-charcoal">
   <div class="si">
-    <p class="stag stag-light reveal">05 · Only One</p>
+    <p class="stag stag-light reveal">05 · Only CHA</p>
     <div class="statement reveal rv1">
-      <h2 style="color:var(--text-white)">전국 <span style="color:var(--gold)">유일</span>,<br>의과학대학 안의 경영학</h2>
+      <h2 style="color:var(--text-white)"><span style="color:var(--gold)">산·학·연·병</span><br>차의과학대만의 인프라</h2>
     </div>
 
     <div class="four-grid reveal rv2">
       <div class="card-dark" data-tilt>
         <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M22 22H2"/><path d="M17 22V6c0-1.886 0-2.828-.586-3.414S14.886 2 13 2h-2c-1.886 0-2.828 0-3.414.586S7 4.114 7 6v16m14 0V11.5c0-1.405 0-2.107-.337-2.611a2 2 0 0 0-.552-.552C19.607 8 18.904 8 17.5 8M3 22V11.5c0-1.405 0-2.107.337-2.611a2 2 0 0 1 .552-.552C4.393 8 5.096 8 6.5 8"/><path stroke-linecap="round" d="M12 22v-3M10 5h4m-4 3h4m-4 3h4m-4 3h4"/></svg></div>
-        <h3>차병원 네트워크</h3>
-        <p>졸업생 10.9% 차병원그룹 취업</p>
-      </div>
-      <div class="card-dark" data-tilt>
-        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8c0-2.828 0-4.243.879-5.121C5.757 2 7.172 2 10 2h4c2.828 0 4.243 0 5.121.879C20 3.757 20 5.172 20 8v8c0 2.828 0 4.243-.879 5.121C18.243 22 16.828 22 14 22h-4c-2.828 0-4.243 0-5.121-.879C4 20.243 4 18.828 4 16z"/><path d="M19.898 16h-12c-.93 0-1.395 0-1.777.102A3 3 0 0 0 4 18.224"/><path stroke-linecap="round" d="M8 7h8m-8 3.5h5m6.5 8.5H8"/></svg></div>
-        <h3>특화 커리큘럼</h3>
-        <p>의료경영, 바이오산업론</p>
+        <h3>병 — 차병원 네트워크</h3>
+        <p>졸업생 10.9% 차병원그룹 취업, 의료 현장 연계</p>
       </div>
       <div class="card-dark" data-tilt>
         <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12a10 10 0 1 1-20.001 0A10 10 0 0 1 22 12Z"/><path d="M16 12c0 1.313-.104 2.614-.305 3.827c-.2 1.213-.495 2.315-.867 3.244c-.371.929-.812 1.665-1.297 2.168c-.486.502-1.006.761-1.531.761s-1.045-.259-1.53-.761c-.486-.503-.927-1.24-1.298-2.168c-.372-.929-.667-2.03-.868-3.244A23.6 23.6 0 0 1 8 12c0-1.313.103-2.614.304-3.827s.496-2.315.868-3.244c.371-.929.812-1.665 1.297-2.168C10.955 2.26 11.475 2 12 2s1.045.259 1.53.761c.486.503.927 1.24 1.298 2.168c.372.929.667 2.03.867 3.244C15.897 9.386 16 10.687 16 12Z"/><path stroke-linecap="round" d="M2 12h20"/></svg></div>
-        <h3>연구 네트워크</h3>
-        <p>조세재정연구원, 금융감독원</p>
+        <h3>연 — 연구 네트워크</h3>
+        <p>조세재정연구원, 금융감독원 등 국책기관 협력</p>
+      </div>
+      <div class="card-dark" data-tilt>
+        <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8c0-2.828 0-4.243.879-5.121C5.757 2 7.172 2 10 2h4c2.828 0 4.243 0 5.121.879C20 3.757 20 5.172 20 8v8c0 2.828 0 4.243-.879 5.121C18.243 22 16.828 22 14 22h-4c-2.828 0-4.243 0-5.121-.879C4 20.243 4 18.828 4 16z"/><path d="M19.898 16h-12c-.93 0-1.395 0-1.777.102A3 3 0 0 0 4 18.224"/><path stroke-linecap="round" d="M8 7h8m-8 3.5h5m6.5 8.5H8"/></svg></div>
+        <h3>학 — 특화 커리큘럼</h3>
+        <p>의료경영, 바이오산업론, AI 브릿지 과목</p>
       </div>
       <div class="card-dark" data-tilt>
         <div class="ic ic-gold"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.222 4.601a9.5 9.5 0 0 1 1.395-.771c1.372-.615 2.058-.922 2.97-.33c.913.59.913 1.56.913 3.5v1.5c0 1.886 0 2.828.586 3.414s1.528.586 3.414.586H17c1.94 0 2.91 0 3.5.912c.592.913.285 1.599-.33 2.97a9.5 9.5 0 0 1-10.523 5.435A9.5 9.5 0 0 1 6.222 4.601Z"/><path d="M21.446 7.069a8.03 8.03 0 0 0-4.515-4.515C15.389 1.947 14 3.344 14 5v4a1 1 0 0 0 1 1h4c1.657 0 3.053-1.39 2.446-2.931Z"/></svg></div>
-        <h3>데이터 분석</h3>
-        <p>건강보험공단, 빅데이터 활용</p>
+        <h3>산 — RISE사업 · 산학협력</h3>
+        <p>지역 산업체 연계, 지산학연병 혁신 생태계</p>
       </div>
     </div>
 
@@ -669,7 +677,7 @@ body:not(.loaded) #hero::after{opacity:1}
         <p style="color:var(--text-white-dim)">헬스케어 데이터 분석가, 보험 리스크 분석</p>
       </div>
     </div>
-    <p class="compare-note reveal rv4" style="color:var(--text-white-dim)">둘 다 경영학과 시너지가 큽니다!</p>
+    <p class="compare-note reveal rv4" style="color:var(--text-white-dim)">산학연병 인프라 위에서, 경영학과의 시너지가 극대화됩니다.</p>
   </div>
 </section>
 
@@ -761,7 +769,7 @@ body:not(.loaded) #hero::after{opacity:1}
       </div>
       <div class="faq-item">
         <button class="faq-q">바이오와 경영을 같이 배우면 어떤 장점이 있나요? <span class="fa">&#9662;</span></button>
-        <div class="faq-a"><div class="faq-ai">차의과학대학교는 전국 유일하게 의과학대학 안에 경영학이 있어요. 졸업생의 24.9%가 바이오헬스케어 분야로 진출하며, 차병원 네트워크 취업(10.9%), 건강보험공단 빅데이터 활용 등 차별화된 기회를 제공합니다.</div></div>
+        <div class="faq-a"><div class="faq-ai">차의과학대학교는 산·학·연·병 인프라가 결합된 독보적인 환경에서 경영학을 배울 수 있어요. 졸업생의 24.9%가 바이오헬스케어 분야로 진출하며, 차병원 네트워크 취업(10.9%), 건강보험공단 빅데이터 활용 등 차별화된 기회를 제공합니다.</div></div>
       </div>
     </div>
   </div>
