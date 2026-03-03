@@ -1420,6 +1420,7 @@ function sd(e){
 }
 function dr(e){
   if(!dragging) return;
+  e.preventDefault();
   const t = e.touches ? e.touches[0] : e;
   let nl=sl+(t.clientX-sx), nt=st+(t.clientY-sy);
   nl=Math.max(0,Math.min(nl,innerWidth-pc.offsetWidth));
@@ -1430,7 +1431,7 @@ function dr(e){
 function su(){ if(dragging){dragging=false; pc.classList.remove('dragging');} }
 document.addEventListener('mousemove',dr);
 document.addEventListener('mouseup',su);
-document.addEventListener('touchmove',dr,{passive:false});
+document.addEventListener('touchmove',function(e){ if(dragging) dr(e); },{passive:false});
 document.addEventListener('touchend',su);
 
 function toggleMinimizePIP(){ pc.classList.toggle('minimized'); }
