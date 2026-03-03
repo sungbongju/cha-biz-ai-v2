@@ -83,8 +83,8 @@ section{position:relative;padding:88px 24px;overflow:hidden}
 .card-dark:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.4)}
 .card-light{background:#fff;border:1px solid var(--border-light);border-radius:16px;padding:32px;transition:transform 0.4s cubic-bezier(.22,1,.36,1),box-shadow 0.4s}
 .card-light:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.08)}
-.card-glass{background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.2);border-radius:16px;padding:32px;transition:transform 0.4s cubic-bezier(.22,1,.36,1)}
-.card-glass:hover{transform:translateY(-3px)}
+.card-beige{background:#fff;border:none;border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:transform 0.4s cubic-bezier(.22,1,.36,1),box-shadow 0.4s}
+.card-beige:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.12)}
 
 /* ═══ ICONS ═══ */
 .ic{display:flex;align-items:center;margin-bottom:16px}
@@ -93,8 +93,11 @@ section{position:relative;padding:88px 24px;overflow:hidden}
 .ic-charcoal{color:var(--charcoal)}
 .ic-cream{color:var(--cream)}
 .ic-medium{color:var(--text-medium)}
-.card-dark h3,.card-glass h3{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text-white)}
-.card-dark p,.card-glass p{font-size:13px;color:var(--text-white-dim);line-height:1.8}
+.ic-dark{color:var(--gold-dark)}
+.card-dark h3{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text-white)}
+.card-dark p{font-size:13px;color:var(--text-white-dim);line-height:1.8}
+.card-beige h3{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text-dark)}
+.card-beige p{font-size:13px;color:var(--text-medium);line-height:1.8}
 .card-light h3{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text-dark)}
 .card-light p{font-size:13px;color:var(--text-medium);line-height:1.8}
 .card .cm{font-size:11px;color:var(--text-light);margin-top:12px;font-style:italic}
@@ -158,14 +161,14 @@ body:not(.loaded) #hero::after{opacity:1}
 
 /* ═══ BENTO ═══ */
 .bento{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:16px;margin-top:36px}
-.bento .card-dark.lg,.bento .card-glass.lg{grid-column:1;grid-row:1/3;display:flex;flex-direction:column;justify-content:center}
+.bento .card-dark.lg,.bento .card-beige.lg{grid-column:1;grid-row:1/3;display:flex;flex-direction:column;justify-content:center}
 .bento .r1{grid-column:2;grid-row:1}
 .bento .r2{grid-column:2;grid-row:2}
 .bento-b{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
 .reason-list{list-style:none;padding:0;margin:12px 0 0}
-.reason-list li{font-size:13px;padding:10px 0;border-bottom:1px solid var(--border-dark);line-height:1.7;color:var(--text-white-dim)}
+.reason-list li{font-size:13px;padding:10px 0;border-bottom:1px solid var(--border-light);line-height:1.7;color:var(--text-medium)}
 .reason-list li:last-child{border:none}
-.reason-list li strong{color:var(--text-white);font-weight:600}
+.reason-list li strong{color:var(--text-dark);font-weight:600}
 
 /* ═══ DASHBOARD ═══ */
 .stat-hero{text-align:center;margin-bottom:36px}
@@ -288,7 +291,7 @@ body:not(.loaded) #hero::after{opacity:1}
 @media(max-width:768px){
   section{padding:64px 20px}
   .bento{grid-template-columns:1fr}
-  .bento .card-dark.lg,.bento .card-glass.lg{grid-row:auto}
+  .bento .card-dark.lg,.bento .card-beige.lg{grid-row:auto}
   .bento .r1,.bento .r2{grid-column:1}
   .bento-b,.co-grid,.compare-row,.four-grid,.exp-b{grid-template-columns:1fr}
   .magazine{grid-template-columns:1fr}
@@ -455,36 +458,36 @@ body:not(.loaded) #hero::after{opacity:1}
     <p class="ss reveal rv2" style="color:rgba(28,28,28,0.6)">GPU 서버부터 실감미디어 스튜디오까지, 실습 환경이 완비되어 있습니다.</p>
 
     <div class="bento reveal rv2">
-      <div class="card-glass lg" data-tilt>
-        <div class="ic" style="color:var(--charcoal)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 19.5h-5m5 0c0-.713 0-1.07.038-1.307c.123-.763.144-.812.631-1.412c.151-.186.711-.688 1.832-1.692A7.5 7.5 0 1 0 7 15.09c1.12 1.004 1.68 1.505 1.832 1.692c.487.6.508.649.63 1.412c.039.237.039.593.039 1.307m5 0c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.349.2-.816.2-1.751.2s-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549c-.201-.348-.201-.815-.201-1.75"/><path stroke-linecap="round" stroke-linejoin="round" d="m12.786 8.5l-2.143 3h3l-2.143 3"/></svg></div>
-        <h3 style="color:var(--charcoal)">AI비즈니스 분석 랩</h3>
-        <p style="color:rgba(28,28,28,0.65)">40석 GPU서버, 클라우드 크레딧,<br>생성형AI API 제공<br><br>경영학 실습에 최적화된 분석 환경에서 실제 데이터를 다루며 배웁니다.</p>
+      <div class="card-beige lg" data-tilt>
+        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 19.5h-5m5 0c0-.713 0-1.07.038-1.307c.123-.763.144-.812.631-1.412c.151-.186.711-.688 1.832-1.692A7.5 7.5 0 1 0 7 15.09c1.12 1.004 1.68 1.505 1.832 1.692c.487.6.508.649.63 1.412c.039.237.039.593.039 1.307m5 0c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.349.2-.816.2-1.751.2s-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549c-.201-.348-.201-.815-.201-1.75"/><path stroke-linecap="round" stroke-linejoin="round" d="m12.786 8.5l-2.143 3h3l-2.143 3"/></svg></div>
+        <h3>AI비즈니스 분석 랩</h3>
+        <p>40석 GPU서버, 클라우드 크레딧,<br>생성형AI API 제공<br><br>경영학 실습에 최적화된 분석 환경에서 실제 데이터를 다루며 배웁니다.</p>
       </div>
-      <div class="card-glass r1" data-tilt>
-        <div class="ic" style="color:var(--charcoal)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M15.414 10.941c.781.462.781 1.656 0 2.118l-4.72 2.787C9.934 16.294 9 15.71 9 14.786V9.214c0-.924.934-1.507 1.694-1.059z"/></svg></div>
-        <h3 style="color:var(--charcoal)">실감미디어 스튜디오</h3>
-        <p style="color:rgba(28,28,28,0.65)">LED월+크로마키, AI피드백,<br>투자자 피칭 리허설</p>
+      <div class="card-beige r1" data-tilt>
+        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M15.414 10.941c.781.462.781 1.656 0 2.118l-4.72 2.787C9.934 16.294 9 15.71 9 14.786V9.214c0-.924.934-1.507 1.694-1.059z"/></svg></div>
+        <h3>실감미디어 스튜디오</h3>
+        <p>LED월+크로마키, AI피드백,<br>투자자 피칭 리허설</p>
       </div>
-      <div class="card-glass r2" data-tilt>
-        <div class="ic" style="color:var(--charcoal)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 14l2.293-2.293a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 0 1.414 0L17 10m0 0v2.5m0-2.5h-2.5"/></svg></div>
-        <h3 style="color:var(--charcoal)">실시간 대시보드</h3>
-        <p style="color:rgba(28,28,28,0.65)">Bloomberg 연동, 뉴스감성·트렌드<br>자동 모니터링</p>
+      <div class="card-beige r2" data-tilt>
+        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 14l2.293-2.293a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 0 1.414 0L17 10m0 0v2.5m0-2.5h-2.5"/></svg></div>
+        <h3>실시간 대시보드</h3>
+        <p>Bloomberg 연동, 뉴스감성·트렌드<br>자동 모니터링</p>
       </div>
     </div>
 
     <div class="bento-b reveal rv3">
-      <div class="card-glass" data-tilt>
-        <div class="ic" style="color:var(--charcoal)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.5 13.572L12 21l-2.896-2.868m-6.117-8.104A5 5 0 0 1 12 7.006a5 5 0 1 1 7.5 6.572"/><path d="M3 13h2l2 3l2-6l1 3h3"/></svg></div>
-        <h3 style="color:var(--charcoal)">헬스케어AI 샌드박스</h3>
-        <p style="color:rgba(28,28,28,0.65)">비식별 진료데이터, 건보공단 데이터 분석 환경</p>
+      <div class="card-beige" data-tilt>
+        <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.5 13.572L12 21l-2.896-2.868m-6.117-8.104A5 5 0 0 1 12 7.006a5 5 0 1 1 7.5 6.572"/><path d="M3 13h2l2 3l2-6l1 3h3"/></svg></div>
+        <h3>헬스케어AI 샌드박스</h3>
+        <p>비식별 진료데이터, 건보공단 데이터 분석 환경</p>
       </div>
-      <div class="card-glass" data-tilt>
-        <h3 style="margin-bottom:12px;color:var(--charcoal)">AI 시대, 경영학이 중요한 이유</h3>
-        <ul class="reason-list" style="border-color:rgba(28,28,28,0.1)">
-          <li style="color:rgba(28,28,28,0.65);border-color:rgba(28,28,28,0.1)"><strong style="color:var(--charcoal)">전략적 의사결정</strong> — AI가 분석하지만, 최종 판단은 사람의 몫</li>
-          <li style="color:rgba(28,28,28,0.65);border-color:rgba(28,28,28,0.1)"><strong style="color:var(--charcoal)">이해관계자 조정</strong> — 주주·직원·고객 사이의 균형</li>
-          <li style="color:rgba(28,28,28,0.65);border-color:rgba(28,28,28,0.1)"><strong style="color:var(--charcoal)">윤리적 경영</strong> — ESG 경영, 데이터 윤리 판단</li>
-          <li style="color:rgba(28,28,28,0.65);border-color:rgba(28,28,28,0.1)"><strong style="color:var(--charcoal)">비즈니스 전환</strong> — AI·빅데이터를 사업 모델로 전환</li>
+      <div class="card-beige" data-tilt>
+        <h3 style="margin-bottom:12px">AI 시대, 경영학이 중요한 이유</h3>
+        <ul class="reason-list">
+          <li><strong>전략적 의사결정</strong> — AI가 분석하지만, 최종 판단은 사람의 몫</li>
+          <li><strong>이해관계자 조정</strong> — 주주·직원·고객 사이의 균형</li>
+          <li><strong>윤리적 경영</strong> — ESG 경영, 데이터 윤리 판단</li>
+          <li><strong>비즈니스 전환</strong> — AI·빅데이터를 사업 모델로 전환</li>
         </ul>
       </div>
     </div>
