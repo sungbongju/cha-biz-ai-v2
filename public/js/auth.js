@@ -325,16 +325,10 @@
         trySend();
       } else {
         _pendingAvatarPayload = { user: user, token: tkn };
-        console.log('[Auth] 아바타 대기 중, 3초 간격 재시도 시작');
-        // 3초 간격으로 5회 재시도 (3s, 6s, 9s, 12s, 15s)
-        var retryCount = 0;
-        var retryTimer = setInterval(function () {
-          retryCount++;
-          trySend();
-          if (_avatarReady || retryCount >= 5) {
-            clearInterval(retryTimer);
-          }
-        }, 3000);
+        console.log('[Auth] 아바타 대기 중, 8초 후 1회 전송');
+        setTimeout(function () {
+          if (!_avatarReady) trySend();
+        }, 8000);
       }
     });
   }
