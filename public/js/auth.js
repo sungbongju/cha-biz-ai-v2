@@ -291,6 +291,7 @@
 
   var _avatarReady = false;
   var _pendingAvatarPayload = null;
+  var _userInfoSent = false;
 
   function sendUserInfoToAvatar(user, token) {
     var iframe = document.getElementById('heygen-pip');
@@ -321,14 +322,21 @@
         } catch (e) { }
       }
 
-      if (_avatarReady) {
+      if (_userInfoSent) return;
+      function sendOnce() {
+        if (_userInfoSent) return;
+        _userInfoSent = true;
         trySend();
+      }
+      if (_avatarReady) {
+        sendOnce();
       } else {
         _pendingAvatarPayload = { user: user, token: tkn };
-        console.log('[Auth] 아바타 대기 중, 8초 후 1회 전송');
-        setTimeout(function () {
-          if (!_avatarReady) trySend();
-        }, 8000);
+        console.log('[Auth] 아바타 대기 중, 재시도 대기');
+        // 5초, 10초, 18초에 시도
+        setTimeout(function(){ if(!_userInfoSent) sendOnce(); }, 5000);
+        setTimeout(function(){ if(!_userInfoSent) sendOnce(); }, 10000);
+        setTimeout(function(){ if(!_userInfoSent) sendOnce(); }, 18000);
       }
     });
   }
@@ -339,9 +347,9 @@
     if (e.data.type === 'AVATAR_READY' || e.data.type === 'STREAM_READY') {
       _avatarReady = true;
       console.log('[Auth] 아바타 준비 완료 신호 수신');
-      if (_pendingAvatarPayload) {
-        var p = _pendingAvatarPayload;
+      if (_pendingAvatarPayload && !_userInfoSent) {
         _pendingAvatarPayload = null;
+        _userInfoSent = true;
         var session = getStoredSession();
         if (session) {
           sendUserInfoToAvatar(session.user, session.token);
