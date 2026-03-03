@@ -233,15 +233,19 @@
       }
 
       if (_avatarReady) {
-        // 아바타가 이미 준비됨 → 즉시 전송
         trySend();
       } else {
-        // 아바타 미준비 → 대기열에 저장 (AVATAR_READY 시 자동 전송)
         _pendingAvatarPayload = { user: user, token: tkn };
-        console.log('[Auth] 아바타 대기 중, 준비되면 자동 전송');
-        // 폴백: 8초 후 강제 시도 + 14초 후 재시도
-        setTimeout(trySend, 8000);
-        setTimeout(trySend, 14000);
+        console.log('[Auth] 아바타 대기 중, 3초 간격 재시도 시작');
+        // 3초 간격으로 5회 재시도 (3s, 6s, 9s, 12s, 15s)
+        var retryCount = 0;
+        var retryTimer = setInterval(function () {
+          retryCount++;
+          trySend();
+          if (_avatarReady || retryCount >= 5) {
+            clearInterval(retryTimer);
+          }
+        }, 3000);
       }
     });
   }
