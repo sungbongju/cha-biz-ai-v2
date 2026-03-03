@@ -200,6 +200,9 @@
   // 6. 아바타에 사용자 정보 + 이력 전달
   // ============================================
 
+  var _avatarReady = false;
+  var _pendingAvatarPayload = null;
+
   function sendUserInfoToAvatar(user, token) {
     var iframe = document.getElementById('heygen-pip');
     if (!iframe || !iframe.contentWindow) return;
@@ -221,20 +224,44 @@
         } : null
       };
 
-      try {
-        iframe.contentWindow.postMessage(payload, '*');
-        iframe.contentWindow.postMessage({ type: 'START_AVATAR' }, '*');
-        console.log('[Auth] USER_INFO 전송:', user.name);
-      } catch (e) { }
-
-      // 지연 전송 (iframe 늦게 로드될 수 있음)
-      setTimeout(function () {
+      function trySend() {
         try {
           iframe.contentWindow.postMessage(payload, '*');
+          iframe.contentWindow.postMessage({ type: 'START_AVATAR' }, '*');
+          console.log('[Auth] USER_INFO 전송:', user.name);
         } catch (e) { }
-      }, 3000);
+      }
+
+      if (_avatarReady) {
+        // 아바타가 이미 준비됨 → 즉시 전송
+        trySend();
+      } else {
+        // 아바타 미준비 → 대기열에 저장 (AVATAR_READY 시 자동 전송)
+        _pendingAvatarPayload = { user: user, token: tkn };
+        console.log('[Auth] 아바타 대기 중, 준비되면 자동 전송');
+        // 폴백: 8초 후 강제 시도 + 14초 후 재시도
+        setTimeout(trySend, 8000);
+        setTimeout(trySend, 14000);
+      }
     });
   }
+
+  // 아바타 iframe에서 AVATAR_READY 또는 Stream ready 신호 수신
+  window.addEventListener('message', function (e) {
+    if (!e.data) return;
+    if (e.data.type === 'AVATAR_READY' || e.data.type === 'STREAM_READY') {
+      _avatarReady = true;
+      console.log('[Auth] 아바타 준비 완료 신호 수신');
+      if (_pendingAvatarPayload) {
+        var p = _pendingAvatarPayload;
+        _pendingAvatarPayload = null;
+        var session = getStoredSession();
+        if (session) {
+          sendUserInfoToAvatar(session.user, session.token);
+        }
+      }
+    }
+  });
 
   // ============================================
   // 7. 포괄적 행동 추적 시스템
@@ -487,7 +514,7 @@
             startTracking();
             setTimeout(function () {
               sendUserInfoToAvatar(session.user, session.token);
-            }, 2000);
+            }, 6000);
           } else {
             clearSession();
             updateUI(null);
