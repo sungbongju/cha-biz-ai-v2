@@ -1437,6 +1437,26 @@ function toggleMinimizePIP(){ pc.classList.toggle('minimized'); }
 function closePIP(){ pc.classList.add('hidden'); }
 function showPIP(){ pc.classList.remove('hidden','minimized'); }
 
+/* ═══ AVATAR IFRAME RETRY ═══ */
+(function(){
+  var pip = document.getElementById('heygen-pip');
+  var avatarUrl = 'https://interactiveavatarnextjsdemo.netlify.app';
+  var maxRetry = 5, attempt = 0, checkDelay = 4000;
+  function checkAvatar(){
+    attempt++;
+    try {
+      var w = pip.contentWindow;
+      if(!w || !w.document || !w.document.body || w.document.body.innerHTML.length < 50){
+        if(attempt < maxRetry){ pip.src = avatarUrl + '?r=' + Date.now(); setTimeout(checkAvatar, checkDelay); }
+      }
+    } catch(e){
+      if(attempt < maxRetry){ pip.src = avatarUrl + '?r=' + Date.now(); setTimeout(checkAvatar, checkDelay); }
+    }
+  }
+  pip.addEventListener('load', function(){ setTimeout(checkAvatar, checkDelay); });
+  setTimeout(checkAvatar, checkDelay);
+})();
+
 /* ═══ PostMessage: NAVIGATE_TAB ═══ */
 window.addEventListener('message', e => {
   if(!e.data || e.data.type !== 'NAVIGATE_TAB') return;
