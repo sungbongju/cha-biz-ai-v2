@@ -432,6 +432,63 @@ body:not(.loaded) #hero::after{opacity:1}
   .sv-options{gap:8px}
   .sv-chip span{padding:8px 18px;font-size:13px}
 }
+
+/* ═══ VENN DIAGRAM ═══ */
+.venn{position:relative;max-width:240px;aspect-ratio:1/1;margin:0 auto 40px}
+.vc{position:absolute;width:64%;aspect-ratio:1;border-radius:50%;transition:transform 0.5s cubic-bezier(.22,1,.36,1)}
+.vc:hover{transform:scale(1.05)}
+.vc1{left:2%;top:0;background:rgba(160,120,80,0.08);border:1.5px solid rgba(160,120,80,0.2)}
+.vc2{right:2%;top:0;background:rgba(212,184,150,0.08);border:1.5px solid rgba(212,184,150,0.2)}
+.vc3{left:50%;bottom:0;margin-left:-32%;background:rgba(201,162,126,0.08);border:1.5px solid rgba(201,162,126,0.2)}
+.vl{position:absolute;font-size:12px;font-weight:600;color:var(--gold-dark);pointer-events:none;z-index:1;line-height:1.3}
+.vl1{top:8%;left:-2%}.vl2{top:8%;right:-2%;text-align:right}.vl3{bottom:2%;left:50%;transform:translateX(-50%);text-align:center}
+.v-core{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);text-align:center;z-index:3;pointer-events:none}
+.v-core b{display:block;font-size:clamp(12px,3.5vw,14px);font-weight:800;color:var(--gold-dark);white-space:nowrap}
+.v-core small{font-size:10px;color:var(--text-light)}
+
+/* ═══ STEP FLOW ═══ */
+.step-flow{display:flex;align-items:flex-start;justify-content:center;position:relative;margin:0 auto 28px;max-width:640px;padding:0 8px}
+.sf-nd{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2}
+.sf-dot{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;transition:transform 0.3s,box-shadow 0.3s}
+.sf-nd:hover .sf-dot{transform:scale(1.15);box-shadow:0 6px 20px rgba(201,162,126,0.4)}
+.sf-nm{font-size:11px;font-weight:600;text-align:center;line-height:1.4}
+.sf-yr{font-size:10px;text-align:center}
+.sf-track{position:absolute;top:23px;left:12%;right:12%;height:2px;z-index:1;background:linear-gradient(90deg,transparent,rgba(201,162,126,0.3) 10%,rgba(201,162,126,0.3) 90%,transparent)}
+
+/* ═══ COMBO TABLE ═══ */
+.combo{display:flex;align-items:stretch;gap:12px;margin-top:14px}
+.combo-hub{display:flex;align-items:center;justify-content:center;background:var(--gold);color:#fff;border-radius:12px;padding:10px 14px;font-size:13px;font-weight:800;text-align:center;line-height:1.4;flex-shrink:0;min-width:68px;box-shadow:0 4px 16px rgba(201,162,126,0.2)}
+.combo-list{display:flex;flex-direction:column;gap:5px;flex:1}
+.combo-row{display:flex;align-items:center;gap:5px}
+.combo-op{font-size:13px;font-weight:700;flex-shrink:0;width:14px;text-align:center}
+.combo-op-p{color:var(--gold-dark)}.combo-op-e{color:var(--gold)}
+.combo-tag{font-size:11px;padding:4px 8px;border-radius:5px;white-space:nowrap}
+.combo-m{background:#fff;border:1px solid var(--border-light);color:var(--text-dark)}
+.combo-r{background:var(--gold-dark);color:#fff;font-weight:600}
+.combo-sub{font-size:9px;color:var(--text-medium);padding-left:20px;margin-top:-3px}
+
+/* ═══ DIAMOND ═══ */
+.diamond{position:relative;width:240px;height:240px;margin:28px auto 36px}
+.dm-c{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;z-index:3;box-shadow:0 4px 20px rgba(201,162,126,0.35)}
+.dm-n{position:absolute;width:52px;height:52px;border-radius:50%;background:rgba(201,162,126,0.08);border:1.5px solid rgba(201,162,126,0.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);z-index:3;transition:transform 0.3s}
+.dm-n:hover{transform:scale(1.15)}
+.dm-t{left:calc(50% - 26px);top:0}.dm-r{right:0;top:calc(50% - 26px)}.dm-b{left:calc(50% - 26px);bottom:0}.dm-l{left:0;top:calc(50% - 26px)}
+.dm-label{position:absolute;font-size:10px;color:var(--text-white-dim);text-align:center;pointer-events:none;white-space:nowrap}
+.dm-label-t{left:50%;top:58px;transform:translateX(-50%)}.dm-label-r{right:58px;top:50%;transform:translateY(-50%)}
+.dm-label-b{left:50%;bottom:58px;transform:translateX(-50%)}.dm-label-l{left:58px;top:50%;transform:translateY(-50%)}
+
+@media(max-width:640px){
+  .combo{flex-direction:column;gap:8px}
+  .combo-hub{padding:8px 14px;min-width:auto;border-radius:8px}
+  .combo-row{flex-wrap:wrap}
+  .sf-dot{width:40px;height:40px;font-size:11px}
+  .sf-nm{font-size:10px}
+  .diamond{width:200px;height:200px}
+  .dm-c{width:56px;height:56px;font-size:11px}
+  .dm-n{width:44px;height:44px;font-size:11px}
+  .dm-t{left:calc(50% - 22px)}.dm-r{top:calc(50% - 22px)}.dm-b{left:calc(50% - 22px)}.dm-l{top:calc(50% - 22px)}
+  .dm-label-t{top:48px}.dm-label-r{right:48px}.dm-label-b{bottom:48px}.dm-label-l{left:48px}
+}
 </style>
 </head>
 <body>
@@ -557,6 +614,17 @@ body:not(.loaded) #hero::after{opacity:1}
     <p class="ss ss-dark reveal rv2">AI 기술력, 바이오헬스케어 도메인 전문성, 경영 전략 역량을 융합하여<br>미래 헬스케어 산업을 이끌 비즈니스 리더를 키웁니다.</p>
     <hr class="hdiv hdiv-gold reveal rv1"/>
 
+    <!-- Venn Diagram -->
+    <div class="venn reveal rv2">
+      <div class="vc vc1"></div>
+      <div class="vc vc2"></div>
+      <div class="vc vc3"></div>
+      <span class="vl vl1">AI<br>기술력</span>
+      <span class="vl vl2">바이오<br>헬스케어</span>
+      <span class="vl vl3">비즈니스</span>
+      <div class="v-core"><b style="color:#3b2f4a">융합형 인재</b><small>CHA Only</small></div>
+    </div>
+
     <!-- 통계 카드 -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:36px" class="reveal rv2 stat-row">
       <div style="text-align:center;padding:16px;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05)">
@@ -614,6 +682,31 @@ body:not(.loaded) #hero::after{opacity:1}
     <h2 class="sh sh-md reveal rv1"><span class="ac-gold">비즈니스 코어</span> → 전문 트랙<br>→ 융합 캡스톤</h2>
     <p class="ss ss-light reveal rv2">1·2학년 비즈니스 코어 모듈로 경영학 기초를 다지고,<br>3·4학년에는 관심 트랙을 선택하여 전문성을 키웁니다.</p>
 
+    <!-- Step Flow -->
+    <div class="step-flow reveal rv2">
+      <div class="sf-track"></div>
+      <div class="sf-nd">
+        <div class="sf-dot" style="background:var(--gold);color:#fff">1</div>
+        <p class="sf-nm" style="color:var(--gold)">비즈니스<br>코어</p>
+        <p class="sf-yr" style="color:var(--text-white-dim)">2-1</p>
+      </div>
+      <div class="sf-nd">
+        <div class="sf-dot" style="background:var(--gold);color:#fff">2</div>
+        <p class="sf-nm" style="color:var(--gold)">전공<br>기초</p>
+        <p class="sf-yr" style="color:var(--text-white-dim)">2-2</p>
+      </div>
+      <div class="sf-nd">
+        <div class="sf-dot" style="background:var(--gold-dark);color:#fff">3</div>
+        <p class="sf-nm" style="color:var(--gold)">심화<br>& 트랙</p>
+        <p class="sf-yr" style="color:var(--text-white-dim)">3학년</p>
+      </div>
+      <div class="sf-nd">
+        <div class="sf-dot" style="background:#3b2f4a;color:var(--gold);border:2px solid var(--gold)">4</div>
+        <p class="sf-nm" style="color:var(--cream)">융합<br>캡스톤</p>
+        <p class="sf-yr" style="color:var(--text-white-dim)">4학년</p>
+      </div>
+    </div>
+
     <div class="timeline reveal rv2" style="border-color:var(--border-dark)">
       <div class="tl-item" style="color:var(--text-white)">
         <p class="tl-yr" style="color:var(--gold)">STEP 1 · 2학년 1학기 — 비즈니스 코어</p>
@@ -629,13 +722,13 @@ body:not(.loaded) #hero::after{opacity:1}
         <p class="tl-yr" style="color:var(--gold)">STEP 3 · 3학년 1학기 — 전공 심화</p>
         <p class="tl-t" style="color:var(--text-white)">경영전략론, 서비스마케팅, 국제마케팅, 투자론, 금융시장론</p>
         <p class="tl-d" style="color:var(--text-white-dim)">세무회계, 경영통계, 비즈니스애널리틱스, 조직개발과컨설팅, 비즈니스혁신과트렌드</p>
-        <p class="tl-t" style="color:#2ecc71;font-size:12px;margin-top:6px">헬스케어 융합: 헬스케어비즈니스, 헬스케어소비자행동, 헬스케어마켓분석</p>
+        <p class="tl-t" style="color:var(--gold);font-size:12px;margin-top:6px">헬스케어 융합: 헬스케어비즈니스, 헬스케어소비자행동, 헬스케어마켓분석</p>
       </div>
       <div class="tl-item">
         <p class="tl-yr" style="color:var(--gold)">STEP 3 · 3학년 2학기 — 트랙 선택</p>
         <p class="tl-t" style="color:var(--text-white)">인적자원관리, 마케팅리서치, 국제경영학, 재무분석및기업가치평가</p>
         <p class="tl-d" style="color:var(--text-white-dim)">경영혁신사례분석, 마케팅애널리틱스, 회계정보시스템실무, 경영빅데이터분석</p>
-        <p class="tl-t" style="color:#2ecc71;font-size:12px;margin-top:6px">헬스케어 융합: 헬스케어인사실무, 헬스케어파이낸스</p>
+        <p class="tl-t" style="color:var(--gold);font-size:12px;margin-top:6px">헬스케어 융합: 헬스케어인사실무, 헬스케어파이낸스</p>
       </div>
       <div class="tl-item">
         <p class="tl-yr" style="color:var(--gold)">STEP 4 · 4학년 — 융합 캡스톤</p>
@@ -670,15 +763,18 @@ body:not(.loaded) #hero::after{opacity:1}
       <div class="card-beige lg" data-tilt>
         <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 19.5h-5m5 0c0-.713 0-1.07.038-1.307c.123-.763.144-.812.631-1.412c.151-.186.711-.688 1.832-1.692A7.5 7.5 0 1 0 7 15.09c1.12 1.004 1.68 1.505 1.832 1.692c.487.6.508.649.63 1.412c.039.237.039.593.039 1.307m5 0c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.349.2-.816.2-1.751.2s-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549c-.201-.348-.201-.815-.201-1.75"/><path stroke-linecap="round" stroke-linejoin="round" d="m12.786 8.5l-2.143 3h3l-2.143 3"/></svg></div>
         <h3>복수전공으로 열리는 융합 진로</h3>
-        <p style="font-size:13px;line-height:2.2">
-          <strong style="color:var(--gold-dark)">경영학 + 디지털보건의료</strong> → 헬스케어 비즈니스<br>
-          <strong style="color:var(--gold-dark)">경영학 + AI의료데이터학</strong> → 비즈니스 애널리틱스<br>
-          <strong style="color:var(--gold-dark)">경영학 + 바이오계열</strong> → 바이오기술 혁신전략·마케팅·기업가치평가<br>
-          <span style="font-size:11px;color:var(--text-medium);margin-left:16px">(세포·유전자재생의학, 시스템생명과학, 바이오식의약학)</span><br>
-          <strong style="color:var(--gold-dark)">경영학 + 미디어커뮤니케이션학</strong> → 미디어 경영 (IR, CR, PR)<br>
-          <strong style="color:var(--gold-dark)">경영학 + 심리학</strong> → 비즈니스 행동과학 (종업원·소비자·투자자)<br>
-          <strong style="color:var(--gold-dark)">경영학 + 스포츠의학</strong> → 스포츠마케팅
-        </p>
+        <div class="combo">
+          <div class="combo-hub">경영학<br>전공</div>
+          <div class="combo-list">
+            <div class="combo-row"><span class="combo-op combo-op-p">+</span><span class="combo-tag combo-m">디지털보건의료</span><span class="combo-op combo-op-e">=</span><span class="combo-tag combo-r">헬스케어 비즈니스</span></div>
+            <div class="combo-row"><span class="combo-op combo-op-p">+</span><span class="combo-tag combo-m">AI의료데이터학</span><span class="combo-op combo-op-e">=</span><span class="combo-tag combo-r">비즈니스 애널리틱스</span></div>
+            <div class="combo-row"><span class="combo-op combo-op-p">+</span><span class="combo-tag combo-m">바이오계열</span><span class="combo-op combo-op-e">=</span><span class="combo-tag combo-r" style="background:#3b2f4a">바이오기술 혁신전략</span></div>
+            <p class="combo-sub">세포·유전자재생의학, 시스템생명과학, 바이오식의약학</p>
+            <div class="combo-row"><span class="combo-op combo-op-p">+</span><span class="combo-tag combo-m">미디어커뮤니케이션학</span><span class="combo-op combo-op-e">=</span><span class="combo-tag combo-r">미디어 경영</span></div>
+            <div class="combo-row"><span class="combo-op combo-op-p">+</span><span class="combo-tag combo-m">심리학</span><span class="combo-op combo-op-e">=</span><span class="combo-tag combo-r">비즈니스 행동과학</span></div>
+            <div class="combo-row"><span class="combo-op combo-op-p">+</span><span class="combo-tag combo-m">스포츠의학</span><span class="combo-op combo-op-e">=</span><span class="combo-tag combo-r" style="background:#3b2f4a">스포츠마케팅</span></div>
+          </div>
+        </div>
       </div>
       <div class="card-beige r1" data-tilt>
         <div class="ic ic-dark"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c0 3.771 0 7.657 1.318 8.828C5.636 22 7.758 22 12 22s6.364 0 7.682-1.172S21 15.771 21 12"/><path d="m14.66 14.202l6.198-1.86c.41-.123.616-.184.768-.306a1 1 0 0 0 .3-.404c.074-.18.074-.395.074-.824c0-1.688 0-2.531-.33-3.175a3 3 0 0 0-1.303-1.303C19.723 6 18.88 6 17.192 6H6.808c-1.688 0-2.531 0-3.175.33A3 3 0 0 0 2.33 7.633C2 8.277 2 9.12 2 10.808c0 .429 0 .643.073.824a1 1 0 0 0 .3.404c.153.122.358.183.77.307l6.197 1.859"/><path stroke-linecap="round" d="M14 12.5h-4a.5.5 0 0 0-.5.5v2.162a.5.5 0 0 0 .314.464l.7.28a4 4 0 0 0 2.972 0l.7-.28a.5.5 0 0 0 .314-.464V13a.5.5 0 0 0-.5-.5ZM9.17 4a3.001 3.001 0 0 1 5.66 0"/></svg></div>
@@ -860,6 +956,21 @@ body:not(.loaded) #hero::after{opacity:1}
     <p class="stag stag-light reveal">05 · Only CHA</p>
     <div class="statement reveal rv1">
       <h2 style="color:var(--text-white)"><span style="color:var(--gold)">산·학·연·병</span><br>차의과학대만의 인프라</h2>
+    </div>
+
+    <!-- Diamond Hub -->
+    <div class="diamond reveal rv2">
+      <svg width="100%" height="100%" viewBox="0 0 240 240" style="position:absolute;inset:0;z-index:1">
+        <line x1="120" y1="52" x2="120" y2="86" stroke="rgba(201,162,126,0.3)" stroke-width="1.5"/>
+        <line x1="120" y1="154" x2="120" y2="188" stroke="rgba(201,162,126,0.3)" stroke-width="1.5"/>
+        <line x1="52" y1="120" x2="86" y2="120" stroke="rgba(201,162,126,0.3)" stroke-width="1.5"/>
+        <line x1="154" y1="120" x2="188" y2="120" stroke="rgba(201,162,126,0.3)" stroke-width="1.5"/>
+      </svg>
+      <div class="dm-c">경영학</div>
+      <div class="dm-n dm-t">산</div>
+      <div class="dm-n dm-r">학</div>
+      <div class="dm-n dm-b">병</div>
+      <div class="dm-n dm-l">연</div>
     </div>
 
     <div class="four-grid reveal rv2">
