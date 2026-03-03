@@ -292,8 +292,36 @@
   var _avatarReady = false;
   var _pendingAvatarPayload = null;
   var _userInfoSent = false;
+  var _userHasInteracted = false;
+  var _pendingSendArgs = null;
+
+  // 사용자 첫 클릭/탭 감지 (AudioContext 정책 대응)
+  function onFirstInteraction() {
+    if (_userHasInteracted) return;
+    _userHasInteracted = true;
+    document.removeEventListener('click', onFirstInteraction, true);
+    document.removeEventListener('touchstart', onFirstInteraction, true);
+    document.removeEventListener('keydown', onFirstInteraction, true);
+    console.log('[Auth] 사용자 인터랙션 감지 — 아바타 전송 가능');
+    if (_pendingSendArgs) {
+      doSendUserInfo(_pendingSendArgs.user, _pendingSendArgs.token);
+      _pendingSendArgs = null;
+    }
+  }
+  document.addEventListener('click', onFirstInteraction, true);
+  document.addEventListener('touchstart', onFirstInteraction, true);
+  document.addEventListener('keydown', onFirstInteraction, true);
 
   function sendUserInfoToAvatar(user, token) {
+    if (!_userHasInteracted) {
+      console.log('[Auth] 사용자 인터랙션 대기 중 (AudioContext 정책)');
+      _pendingSendArgs = { user: user, token: token };
+      return;
+    }
+    doSendUserInfo(user, token);
+  }
+
+  function doSendUserInfo(user, token) {
     var iframe = document.getElementById('heygen-pip');
     if (!iframe || !iframe.contentWindow) return;
 
@@ -333,7 +361,6 @@
       } else {
         _pendingAvatarPayload = { user: user, token: tkn };
         console.log('[Auth] 아바타 대기 중, 재시도 대기');
-        // 5초, 10초, 18초에 시도
         setTimeout(function(){ if(!_userInfoSent) sendOnce(); }, 5000);
         setTimeout(function(){ if(!_userInfoSent) sendOnce(); }, 10000);
         setTimeout(function(){ if(!_userInfoSent) sendOnce(); }, 18000);
