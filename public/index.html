@@ -1441,17 +1441,11 @@ function showPIP(){ pc.classList.remove('hidden','minimized'); }
 (function(){
   var pip = document.getElementById('heygen-pip');
   var avatarUrl = 'https://interactiveavatarnextjsdemo.netlify.app';
-  var alive = false, attempt = 0, maxRetry = 3;
-  window.addEventListener('message', function(e){
-    if(e.origin.indexOf('netlify') !== -1) alive = true;
+  var loaded = false, attempt = 0, maxRetry = 2;
+  pip.addEventListener('load', function(){ loaded = true; });
+  pip.addEventListener('error', function(){
+    if(attempt < maxRetry){ attempt++; pip.src = avatarUrl + '?r=' + Date.now(); }
   });
-  function retryIfDead(){
-    if(alive || attempt >= maxRetry) return;
-    attempt++;
-    pip.src = avatarUrl + '?r=' + Date.now();
-    setTimeout(retryIfDead, 10000);
-  }
-  setTimeout(retryIfDead, 10000);
 })();
 
 /* ═══ PostMessage: NAVIGATE_TAB ═══ */
