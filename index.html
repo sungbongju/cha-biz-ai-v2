@@ -354,6 +354,32 @@ body:not(.loaded) #hero::after{opacity:1}
 .syn-c{transition:transform 0.4s cubic-bezier(.22,1,.36,1)}
 .syn-c:hover{transform:scale(1.03)}
 
+/* ═══ SURVEY SECTION ═══ */
+.sq{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(0,0,0,.05)}
+.sq:last-child{border-bottom:none}
+.sq-label{font-size:14px;font-weight:500;color:var(--text-dark);margin-bottom:10px;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.sq-num{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;background:var(--gold);color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.likert{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:nowrap}
+.likert-end{font-size:11px;color:var(--text-light);white-space:nowrap;min-width:50px;text-align:center}
+.likert label{display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.likert input[type="radio"]{display:none}
+.likert label span{width:40px;height:40px;border-radius:50%;border:2px solid var(--border-light);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--text-medium);transition:all .2s;background:#fff}
+.likert label:hover span{border-color:var(--gold);color:var(--gold)}
+.likert input:checked+span{background:var(--gold);border-color:var(--gold);color:#fff;transform:scale(1.1);box-shadow:0 2px 8px rgba(201,162,126,.4)}
+.sv-options{display:flex;gap:10px;flex-wrap:wrap}
+.sv-chip{cursor:pointer}
+.sv-chip input{display:none}
+.sv-chip span{display:inline-block;padding:10px 24px;border:2px solid var(--border-light);border-radius:12px;font-size:14px;font-weight:500;color:var(--text-medium);background:#fff;transition:all .2s}
+.sv-chip:hover span{border-color:var(--gold);color:var(--gold)}
+.sv-chip input:checked+span{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 2px 8px rgba(201,162,126,.3)}
+.survey-submit{width:100%;padding:14px;background:var(--gold);border:none;border-radius:12px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s;letter-spacing:0.02em;margin-top:8px}
+.survey-submit:hover{background:var(--gold-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,162,126,.4)}
+.survey-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.survey-note{font-size:11px;color:var(--text-light);text-align:center;margin-top:12px}
+.survey-done{text-align:center;padding:40px 20px}
+.survey-done h3{font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.survey-done p{font-size:14px;color:var(--text-medium);line-height:1.6}
+
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:768px){
   section{padding:64px 20px}
@@ -383,6 +409,12 @@ body:not(.loaded) #hero::after{opacity:1}
   .syn-c{width:170px;height:170px;font-size:13px}
   .donut{width:160px;height:160px}
   .nav-dots{right:6px}
+  /* Survey mobile */
+  .likert{gap:4px}
+  .likert label span{width:34px;height:34px;font-size:12px}
+  .likert-end{font-size:10px;min-width:40px}
+  .sv-options{gap:8px}
+  .sv-chip span{padding:8px 18px;font-size:13px}
 }
 </style>
 </head>
@@ -808,6 +840,75 @@ body:not(.loaded) #hero::after{opacity:1}
 </section>
 
 
+<!-- ═══════════════════════════════════════ -->
+<!-- 9 · SURVEY (cream)                    -->
+<!-- ═══════════════════════════════════════ -->
+<section id="survey" class="sec-cream">
+  <div class="si" style="max-width:560px">
+    <p class="stag stag-dark reveal">Survey</p>
+    <h2 class="sh sh-md reveal rv1" style="color:var(--text-dark)">AI 상담 경험<br><span class="ac-dark">설문조사</span></h2>
+    <hr class="hdiv hdiv-gold reveal rv1"/>
+    <p class="reveal rv1" style="text-align:center;color:var(--text-medium);font-size:14px;margin-bottom:28px">AI 아바타와의 상담 경험에 대해 솔직하게 답변해 주세요</p>
+
+    <div id="survey-form" class="reveal rv2">
+      <!-- 만족도 -->
+      <div class="sq" data-q="satisfaction">
+        <p class="sq-label"><span class="sq-num">1</span>AI 아바타 상담에 대한 전반적인 만족도</p>
+        <div class="likert">
+          <span class="likert-end">매우 불만족</span>
+          <label><input type="radio" name="satisfaction" value="1"><span>1</span></label>
+          <label><input type="radio" name="satisfaction" value="2"><span>2</span></label>
+          <label><input type="radio" name="satisfaction" value="3"><span>3</span></label>
+          <label><input type="radio" name="satisfaction" value="4"><span>4</span></label>
+          <label><input type="radio" name="satisfaction" value="5"><span>5</span></label>
+          <span class="likert-end">매우 만족</span>
+        </div>
+      </div>
+
+      <!-- 만족근거 -->
+      <div class="sq">
+        <p class="sq-label"><span class="sq-num">2</span>위 점수를 준 이유를 알려주세요</p>
+        <textarea id="sv-reason" rows="3" placeholder="만족 또는 불만족의 이유를 적어주세요" style="width:100%;padding:12px 14px;border:1px solid var(--border-light);border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;resize:vertical;outline:none;background:#fff"></textarea>
+      </div>
+
+      <!-- 학년 -->
+      <div class="sq">
+        <p class="sq-label"><span class="sq-num">3</span>학년</p>
+        <div class="sv-options">
+          <label class="sv-chip"><input type="radio" name="grade" value="1학년"><span>1학년</span></label>
+          <label class="sv-chip"><input type="radio" name="grade" value="2학년"><span>2학년</span></label>
+          <label class="sv-chip"><input type="radio" name="grade" value="3학년"><span>3학년</span></label>
+          <label class="sv-chip"><input type="radio" name="grade" value="4학년"><span>4학년</span></label>
+        </div>
+      </div>
+
+      <!-- 성별 -->
+      <div class="sq">
+        <p class="sq-label"><span class="sq-num">4</span>성별</p>
+        <div class="sv-options">
+          <label class="sv-chip"><input type="radio" name="gender" value="남"><span>남</span></label>
+          <label class="sv-chip"><input type="radio" name="gender" value="여"><span>여</span></label>
+        </div>
+      </div>
+
+      <!-- MBTI -->
+      <div class="sq" style="border-bottom:none">
+        <p class="sq-label"><span class="sq-num">5</span>MBTI</p>
+        <input type="text" id="sv-mbti" placeholder="예: INFP" maxlength="4" style="width:120px;padding:10px 14px;border:1px solid var(--border-light);border-radius:10px;font-size:16px;font-family:'Noto Sans KR',sans-serif;text-align:center;text-transform:uppercase;letter-spacing:2px;outline:none;background:#fff">
+      </div>
+
+      <button class="survey-submit" id="survey-submit-btn" onclick="submitSurvey()">설문 제출하기</button>
+      <p class="survey-note">* 응답은 연구 목적으로만 활용됩니다.</p>
+    </div>
+
+    <div id="survey-done" class="survey-done" style="display:none">
+      <div class="done-icon" style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:16px">&#10003;</div>
+      <h3>감사합니다!</h3>
+      <p>설문이 성공적으로 제출되었습니다.<br>소중한 의견 감사합니다.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ PIP Avatar ═══ -->
 <div id="heygen-pip-container">
   <iframe allow="camera; microphone; autoplay; clipboard-write" id="heygen-pip" src="https://interactiveavatarnextjsdemo.netlify.app"></iframe>
@@ -1033,6 +1134,78 @@ window.addEventListener('message', e => {
   const el = document.getElementById(id);
   if(el) el.scrollIntoView({behavior:'smooth'});
 });
+
+/* ═══ SURVEY ═══ */
+function submitSurvey(){
+  const btn = document.getElementById('survey-submit-btn');
+
+  // 만족도 필수
+  const sat = document.querySelector('input[name="satisfaction"]:checked');
+  if(!sat){
+    alert('만족도를 선택해 주세요.');
+    document.querySelector('[data-q="satisfaction"]').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  // 학년 필수
+  const grade = document.querySelector('input[name="grade"]:checked');
+  if(!grade){
+    alert('학년을 선택해 주세요.');
+    return;
+  }
+
+  // 성별 필수
+  const gender = document.querySelector('input[name="gender"]:checked');
+  if(!gender){
+    alert('성별을 선택해 주세요.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '제출 중...';
+
+  const payload = {
+    action: 'survey_submit',
+    satisfaction: parseInt(sat.value),
+    satisfaction_reason: document.getElementById('sv-reason').value.trim() || null,
+    grade: grade.value,
+    gender: gender.value,
+    mbti: document.getElementById('sv-mbti').value.trim().toUpperCase() || null,
+    session_id: localStorage.getItem('business_session') || 'anonymous',
+    token: localStorage.getItem('business_token') || null
+  };
+
+  fetch('https://aiforalab.com/business-api/api.php', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(data => {
+    if(data.success){
+      document.getElementById('survey-form').style.display = 'none';
+      document.getElementById('survey-done').style.display = 'block';
+      localStorage.setItem('survey_submitted','1');
+    } else {
+      alert('제출 실패: ' + (data.error || '알 수 없는 오류'));
+      btn.disabled = false;
+      btn.textContent = '설문 제출하기';
+    }
+  })
+  .catch(e => {
+    alert('서버 연결 실패. 다시 시도해 주세요.');
+    btn.disabled = false;
+    btn.textContent = '설문 제출하기';
+  });
+}
+
+// Already submitted: show done state
+if(localStorage.getItem('survey_submitted')==='1'){
+  const f = document.getElementById('survey-form');
+  const d = document.getElementById('survey-done');
+  if(f) f.style.display = 'none';
+  if(d) d.style.display = 'block';
+}
 </script>
 
 <script src="js/auth.js"></script>
