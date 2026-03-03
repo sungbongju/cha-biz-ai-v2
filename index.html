@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script>
+(function(){
+  var ua = navigator.userAgent || '';
+  if(/KAKAOTALK/i.test(ua)){
+    var currentUrl = location.href;
+    if(/Android/i.test(ua)){
+      location.href = 'intent://' + currentUrl.replace(/https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+      return;
+    }
+    if(/iPhone|iPad|iPod/i.test(ua)){
+      location.href = 'googlechromes://' + currentUrl.replace(/https?:\/\//, '');
+      setTimeout(function(){ location.href = currentUrl; }, 1000);
+      return;
+    }
+  }
+})();
+</script>
+<title>경영학전공 — 차의과학대학교</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+/* ═══ VARIABLES ═══ */
+:root {
+  --bg:#0a0a0f;--bg-alt:#0d1117;--bg-card:#111118;
+  --gold:#c9a84c;--gold-soft:#e8d48b;--blue:#4a7dff;--blue-soft:#7fa3ff;
+  --mint:#34d399;--coral:#f87171;--purple:#a78bfa;
+  --text:#e4e4e7;--text-dim:#71717a;--text-muted:#3f3f46;
+  --glass:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.06);
+  --glow-gold:rgba(201,168,76,0.15);--glow-blue:rgba(74,125,255,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:var(--gold);text-decoration:none}
+
+/* ═══ SCROLL PROGRESS ═══ */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;z-index:9998;background:linear-gradient(90deg,var(--gold),var(--blue));transform-origin:left;transform:scaleX(0);width:100%;pointer-events:none}
+
+/* ═══ TYPOGRAPHY ═══ */
+.stag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;font-weight:500}
+.sh{font-family:'DM Serif Display',serif;font-size:clamp(26px,7vw,44px);line-height:1.25;margin-bottom:16px;color:var(--text)}
+.ss{font-size:15px;color:var(--text-dim);max-width:520px;line-height:1.8;margin-bottom:40px}
+.gt{background:linear-gradient(135deg,var(--gold),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ═══ SECTIONS ═══ */
+section{position:relative;padding:100px 24px;overflow:hidden}
+.bg-d{background:var(--bg)}.bg-a{background:var(--bg-alt)}
+.si{max-width:900px;margin:0 auto;position:relative;z-index:2}
+
+/* ═══ ORBS ═══ */
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px);opacity:0.4;z-index:1}
+.orb-g{background:var(--glow-gold);width:400px;height:400px}
+.orb-b{background:var(--glow-blue);width:350px;height:350px}
+@keyframes fo{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,30px)}}
+
+/* ═══ CARDS ═══ */
+.card{background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:28px;transition:transform 0.4s cubic-bezier(.22,1,.36,1),box-shadow 0.4s;will-change:transform;position:relative;overflow:hidden}
+.card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue));opacity:0;transition:opacity 0.3s}
+.card:hover::before{opacity:1}
+.ci{display:flex;align-items:center;margin-bottom:16px;transition:filter 0.3s}
+.ci-g{color:#d4c09a;filter:drop-shadow(0 0 6px rgba(212,192,154,0.25))}
+.ci-b{color:#8aa8d4;filter:drop-shadow(0 0 6px rgba(138,168,212,0.25))}
+.ci-m{color:#7cc4a8;filter:drop-shadow(0 0 6px rgba(124,196,168,0.2))}
+.ci-c{color:#cf9b9b;filter:drop-shadow(0 0 6px rgba(207,155,155,0.2))}
+.ci-p{color:#b0a0d4;filter:drop-shadow(0 0 6px rgba(176,160,212,0.25))}
+.card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.card p{font-size:13px;color:var(--text-dim);line-height:1.7}
+.card .cm{font-size:11px;color:var(--text-muted);margin-top:12px;font-style:italic}
+
+/* ═══ HERO ═══ */
+#hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
+.hero-ey{font-size:12px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:500;animation:fiu 0.8s ease both}
+#hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,9vw,60px);line-height:1.2;margin-bottom:20px;max-width:700px;animation:fiu 0.8s ease 0.15s both}
+#hero .hero-sub{font-size:clamp(15px,4vw,18px);color:var(--text-dim);max-width:480px;margin:0 auto 40px;animation:fiu 0.8s ease 0.3s both}
+.scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:12px;animation:sb 2s ease-in-out infinite,fiu 0.8s ease 0.45s both}
+@keyframes fiu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sb{0%,100%{transform:translateY(0);opacity:0.6}50%{transform:translateY(10px);opacity:1}}
+
+/* ═══ HSCROLL ═══ */
+.hscroll{display:flex;gap:20px;overflow-x:auto;padding:4px 0 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.hscroll::-webkit-scrollbar{display:none}
+.hscroll .card{min-width:280px;max-width:320px;flex-shrink:0;scroll-snap-align:start}
+.hsh{text-align:center;font-size:12px;color:var(--text-muted);margin-top:8px}
+
+/* ═══ SYNERGY ═══ */
+.synergy{display:flex;align-items:center;justify-content:center;margin:48px auto 24px;position:relative;max-width:520px}
+.syn-c{width:220px;height:220px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;text-align:center}
+.syn-c.bio{background:rgba(74,125,255,0.15);border:1px solid rgba(74,125,255,0.3);margin-right:-60px;z-index:1;padding-right:90px}
+.syn-c.biz{background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);margin-left:-60px;z-index:1;padding-left:70px}
+.syn-m{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:14px;font-weight:700;color:var(--gold);text-align:center;z-index:2;padding:8px 12px;line-height:1.5}
+
+/* ═══ TIMELINE ═══ */
+.timeline{position:relative;padding-left:32px;margin:32px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--blue));border-radius:1px}
+.tl-item{position:relative;margin-bottom:32px;padding-left:20px}
+.tl-item::before{content:'';position:absolute;left:-28px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--gold)}
+.tl-yr{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.tl-t{font-size:16px;font-weight:700;margin-bottom:4px}
+.tl-d{font-size:13px;color:var(--text-dim);line-height:1.7}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text-dim)}
+.chip-g{border-color:rgba(201,168,76,0.3);color:var(--gold)}
+.chip-b{border-color:rgba(74,125,255,0.3);color:var(--blue)}
+
+/* ═══ BENTO ═══ */
+.bento{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:16px;margin-top:32px}
+.bento .card.lg{grid-column:1;grid-row:1/3;display:flex;flex-direction:column;justify-content:center}
+.bento .card.r1{grid-column:2;grid-row:1}
+.bento .card.r2{grid-column:2;grid-row:2}
+.bento-b{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.reason-list{list-style:none;padding:0;margin:12px 0 0}
+.reason-list li{font-size:13px;color:var(--text-dim);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.6}
+.reason-list li:last-child{border:none}
+.reason-list li strong{color:var(--text);font-weight:600}
+
+/* ═══ DASHBOARD ═══ */
+.stat-hero{text-align:center;margin-bottom:40px}
+.stat-num{font-family:'DM Serif Display',serif;font-size:clamp(56px,14vw,96px);line-height:1}
+.stat-lbl{font-size:14px;color:var(--text-dim);margin-top:8px}
+.bar-chart{margin:32px 0}
+.bar-item{margin-bottom:16px}
+.bar-lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bar-lbl span:last-child{color:var(--gold);font-weight:700}
+.bar-track{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--blue));width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.co-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+.co-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:16px;padding:20px}
+.co-card h4{font-size:14px;font-weight:700;margin-bottom:10px}
+.co-card ul{list-style:none;padding:0}
+.co-card li{font-size:12px;color:var(--text-dim);padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.co-card li:last-child{border:none}
+.creative{margin-top:32px;padding:24px;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid var(--border)}
+.creative h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.creative p{font-size:13px;color:var(--text-dim);line-height:1.8}
+
+/* ═══ STATEMENT ═══ */
+.statement{text-align:center;padding:20px 0 40px}
+.statement h2{font-family:'DM Serif Display',serif;font-size:clamp(28px,8vw,48px);line-height:1.2;margin-bottom:8px}
+.four-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:40px 0}
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.compare-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:20px;padding:28px;text-align:center}
+.compare-card h4{font-size:16px;font-weight:700;margin-bottom:12px}
+.compare-card .cf{font-size:13px;color:var(--gold);margin-bottom:8px}
+.compare-card p{font-size:12px;color:var(--text-dim)}
+.compare-note{text-align:center;margin-top:20px;font-size:13px;color:var(--text-dim)}
+
+/* ═══ MAGAZINE ═══ */
+.magazine{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:32px}
+.magazine .card.feat{grid-row:1/3}
+.exp-b{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px}
+
+/* ═══ FAQ ═══ */
+.faq-list{margin-top:32px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;color:var(--text);font-size:15px;font-weight:500;text-align:left;padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Noto Sans KR',sans-serif}
+.faq-q:hover{color:var(--gold)}
+.faq-q .fa{transition:transform 0.3s;font-size:18px;color:var(--text-dim)}
+.faq-item.open .fa{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.faq-ai{padding:0 0 20px;font-size:14px;color:var(--text-dim);line-height:1.8}
+
+/* ═══ FOOTER ═══ */
+.footer-s{text-align:center;padding:80px 24px}
+.footer-s h2{font-family:'DM Serif Display',serif;font-size:clamp(22px,6vw,36px);margin-bottom:24px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 40px;border-radius:50px;font-size:15px;font-weight:700;background:linear-gradient(135deg,var(--gold),#b8942e);color:#0a0a0f;border:none;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;font-family:'Noto Sans KR',sans-serif}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.3)}
+.footer-info{margin-top:32px;font-size:12px;color:var(--text-muted);line-height:2}
+
+/* ═══ REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s cubic-bezier(.22,1,.36,1),transform 0.7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rv1{transition-delay:0.1s}.rv2{transition-delay:0.2s}.rv3{transition-delay:0.3s}.rv4{transition-delay:0.4s}.rv5{transition-delay:0.5s}
+.split-word{display:inline-block;opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s}
+.split-word.visible{opacity:1;transform:translateY(0)}
+
+/* ═══ LOGIN MODAL ═══ */
+.login-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.login-overlay.active{opacity:1;pointer-events:auto}
+.login-card{background:var(--bg-card);border-radius:24px;padding:40px 32px;max-width:380px;width:100%;border:1px solid var(--border);text-align:center;position:relative;overflow:hidden}
+.login-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue))}
+.login-logo{margin-bottom:24px}
+.login-logo-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--gold),#b8942e);display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;color:#0a0a0f}
+.login-logo h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.login-logo p{font-size:13px;color:var(--text-dim);line-height:1.6}
+.login-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--text-muted);font-size:12px}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.login-guest{width:100%;padding:12px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text-dim);font-size:14px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background 0.2s}
+.login-guest:hover{background:rgba(255,255,255,0.08)}
+.login-privacy{margin-top:16px;font-size:11px;color:var(--text-muted);line-height:1.6}
+
+/* ═══ USER TOP BAR ═══ */
+.user-top-bar{position:fixed;top:0;left:0;right:0;z-index:9997;display:none;align-items:center;justify-content:space-between;padding:8px 20px;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);font-size:13px}
+.user-top-bar.show{display:flex}
+.utb-left{display:flex;align-items:center;gap:8px}
+.user-badge{padding:2px 10px;border-radius:20px;font-size:12px;background:rgba(201,168,76,0.15);color:var(--gold)}
+.user-badge::before{content:'\1F464 '}
+.logout-btn{background:none;border:1px solid var(--border);color:var(--text-dim);padding:4px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:border-color 0.2s}
+.logout-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ═══ PIP ═══ */
+#heygen-pip-container{position:fixed;bottom:20px;right:20px;z-index:9999;border-radius:16px;overflow:visible;box-shadow:0 8px 32px rgba(0,0,0,.5);transition:width .3s,height .3s,opacity .3s}
+#heygen-pip-container.hidden{opacity:0;pointer-events:none;transform:scale(.8)}
+#heygen-pip-container.dragging{transition:none}
+#heygen-pip{width:380px;height:214px;border:none;border-radius:16px;background:var(--bg-card);display:block;transition:width .3s,height .3s}
+.pdb{position:absolute;pointer-events:auto;cursor:grab;z-index:5}.pdb:active{cursor:grabbing}
+.pdb.top{top:0;left:0;right:0;height:25px;border-radius:16px 16px 0 0}
+.pdb.left{top:25px;left:0;bottom:0;width:8px}
+.pdb.right{top:25px;right:0;bottom:0;width:8px}
+.pdb.bottom{bottom:0;left:0;right:0;height:8px}
+.phg{position:absolute;top:0;left:0;right:0;height:50px;border-radius:16px 16px 0 0;background:linear-gradient(to bottom,rgba(0,0,0,.5),transparent);opacity:0;transition:opacity .2s;pointer-events:none;z-index:6}
+#heygen-pip-container:hover .phg{opacity:1}
+.pc{position:absolute;top:8px;right:8px;display:flex;gap:6px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:10}
+#heygen-pip-container:hover .pc{opacity:1;pointer-events:auto}
+.pcb{width:28px;height:28px;border-radius:50%;border:none;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;line-height:1}
+.pcb:hover{background:rgba(255,255,255,.3)}.pcb.cb:hover{background:rgba(255,80,60,.7)}
+#heygen-pip-container.minimized{width:120px!important;height:68px!important;border-radius:10px}
+#heygen-pip-container.minimized #heygen-pip{width:120px!important;height:68px!important;border-radius:10px}
+#heygen-pip-toggle{position:fixed;bottom:20px;right:20px;width:64px;height:64px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(135deg,var(--gold),#b8942e);border:2.5px solid rgba(201,168,76,.4);color:#0a0a0f;cursor:pointer;z-index:10000;box-shadow:0 4px 24px rgba(201,168,76,.3);transition:all .3s}
+#heygen-pip-container.hidden~#heygen-pip-toggle{display:flex!important}
+
+/* ═══ NAV DOTS ═══ */
+.nav-dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:100}
+.nav-dot{width:7px;height:7px;border-radius:50%;border:1.5px solid rgba(255,255,255,.12);background:transparent;cursor:pointer;transition:all .3s;padding:0}
+.nav-dot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.4)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  section{padding:72px 20px}
+  .bento{grid-template-columns:1fr}
+  .bento .card.lg{grid-row:auto}
+  .bento .card.r1,.bento .card.r2{grid-column:1}
+  .bento-b,.co-grid,.compare-row,.four-grid,.exp-b{grid-template-columns:1fr}
+  .magazine{grid-template-columns:1fr}
+  .magazine .card.feat{grid-row:auto}
+  .syn-c{width:180px;height:180px}
+}
+@media(max-width:440px){
+  section{padding:56px 16px}
+  .hscroll .card{min-width:260px}
+  #heygen-pip{width:280px;height:158px}
+  .syn-c{width:150px;height:150px;font-size:13px}
+  .nav-dots{right:6px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ SCROLL PROGRESS ═══ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ═══ USER TOP BAR ═══ -->
+<div class="user-top-bar" id="user-top-bar">
+  <div class="utb-left"><span>경영학전공</span><span id="user-badge" class="user-badge"></span></div>
+  <button id="logout-btn" class="logout-btn">로그아웃</button>
+</div>
+
+<!-- ═══ LOGIN MODAL ═══ -->
+<div class="login-overlay" id="login-modal">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M3.092 6.637L9.782 3.5a5.17 5.17 0 0 1 4.435 0l6.692 3.137c1.455.682 1.455 3.044 0 3.726L14.218 13.5a5.17 5.17 0 0 1-4.435 0L5 11.258"/><path stroke-linejoin="round" d="M2.5 15v-2.862c0-1.28 0-1.92.33-2.42c.33-.501.919-.753 2.094-1.257L6 8"/><path d="M19 11.5v5.125c0 1.008-.503 1.952-1.385 2.44C16.146 19.88 13.796 21 12 21s-4.146-1.121-5.615-1.934C5.504 18.577 5 17.633 5 16.626V11.5"/></svg>
+      </div>
+      <h3>경영학전공<br>전공 탐색</h3>
+      <p>카카오 계정으로 간편하게 로그인하고<br>맞춤형 콘텐츠와 AI 상담을 경험하세요</p>
+    </div>
+    <button id="kakao-login-btn" type="button" style="display:flex;align-items:center;justify-content:center;width:100%;height:48px;background:#FEE500;border:none;border-radius:12px;cursor:pointer;font-size:15px;font-weight:700;color:#000;font-family:'Noto Sans KR',sans-serif;transition:background 0.2s,transform 0.1s;gap:8px;">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#000" d="M9 1C4.58 1 1 3.79 1 7.21c0 2.17 1.45 4.08 3.64 5.18-.16.57-.58 2.07-.67 2.39-.1.39.14.39.3.28.12-.08 1.93-1.31 2.71-1.84.65.09 1.32.14 2.02.14 4.42 0 8-2.79 8-6.21C17 3.79 13.42 1 9 1z"/></svg>
+      카카오 로그인
+    </button>
+    <div class="login-divider">또는</div>
+    <button id="login-guest-btn" class="login-guest">로그인 없이 둘러보기</button>
+    <p class="login-privacy">카카오 닉네임만 수집되며, 맞춤형 콘텐츠 추천에만 사용됩니다.<br>다른 목적으로 활용되지 않습니다.</p>
+  </div>
+</div>
+
+<!-- ═══ NAV DOTS ═══ -->
+<div class="nav-dots" id="navDots"></div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 0 · HERO                               -->
+<!-- ═══════════════════════════════════════ -->
+<section id="hero" class="bg-d">
+  <div class="orb orb-g" style="top:-120px;left:-160px;animation:fo 20s infinite"></div>
+  <div class="orb orb-b" style="bottom:-80px;right:-120px;animation:fo 25s infinite reverse"></div>
+  <div class="si" style="display:flex;flex-direction:column;align-items:center">
+    <p class="hero-ey">CHA UNIVERSITY</p>
+    <h1>병원도, 금융도,<br>바이오 스타트업도<br><span class="gt">경영을 아는 사람</span>을<br>찾고 있습니다.</h1>
+    <p class="hero-sub"><span class="gt">바이오헬스케어를 이해하는 경영인</span>은 어디서 키울까요?</p>
+    <div class="scroll-cue">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="m19 9l-7 6l-7-6"/></svg>
+      scroll
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 1 · RESEARCH                           -->
+<!-- ═══════════════════════════════════════ -->
+<section id="research" class="bg-a">
+  <div class="orb orb-b" style="top:10%;left:-100px;animation:fo 22s infinite"></div>
+  <div class="si">
+    <p class="stag reveal">01 · RESEARCH</p>
+    <h2 class="sh reveal rv1">경영학에서 실제로<br><span class="gt">어떤 연구</span>를 하나요?</h2>
+
+    <div class="hscroll reveal rv2">
+      <!-- 경영기획 -->
+      <div class="card" data-tilt>
+        <div class="ci ci-g"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c0 3.771 0 7.657 1.318 8.828C5.636 22 7.758 22 12 22s6.364 0 7.682-1.172S21 15.771 21 12"/><path d="m14.66 14.202l6.198-1.86c.41-.123.616-.184.768-.306a1 1 0 0 0 .3-.404c.074-.18.074-.395.074-.824c0-1.688 0-2.531-.33-3.175a3 3 0 0 0-1.303-1.303C19.723 6 18.88 6 17.192 6H6.808c-1.688 0-2.531 0-3.175.33A3 3 0 0 0 2.33 7.633C2 8.277 2 9.12 2 10.808c0 .429 0 .643.073.824a1 1 0 0 0 .3.404c.153.122.358.183.77.307l6.197 1.859"/><path stroke-linecap="round" d="M14 12.5h-4a.5.5 0 0 0-.5.5v2.162a.5.5 0 0 0 .314.464l.7.28a4 4 0 0 0 2.972 0l.7-.28a.5.5 0 0 0 .314-.464V13a.5.5 0 0 0-.5-.5ZM9.17 4a3.001 3.001 0 0 1 5.66 0"/></svg></div>
+        <h3>경영기획</h3>
+        <p>ESG 평가지표 개발, 기업지배구조 개선,<br>AI 시계열 예측</p>
+        <p class="cm">Applied Economics Letters · Journal of Forecasting</p>
+      </div>
+      <!-- 마케팅 -->
+      <div class="card" data-tilt>
+        <div class="ci ci-b"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 22h18"/><path d="M3 11c0-.943 0-1.414.293-1.707S4.057 9 5 9s1.414 0 1.707.293S7 10.057 7 11v6c0 .943 0 1.414-.293 1.707S5.943 19 5 19s-1.414 0-1.707-.293S3 17.943 3 17zm7-4c0-.943 0-1.414.293-1.707S11.057 5 12 5s1.414 0 1.707.293S14 6.057 14 7v10c0 .943 0 1.414-.293 1.707S12.943 19 12 19s-1.414 0-1.707-.293S10 17.943 10 17zm7-3c0-.943 0-1.414.293-1.707S18.057 2 19 2s1.414 0 1.707.293S21 3.057 21 4v13c0 .943 0 1.414-.293 1.707S19.943 19 19 19s-1.414 0-1.707-.293S17 17.943 17 17z"/></svg></div>
+        <h3>마케팅</h3>
+        <p>AI 서비스 로봇 수용도, MZ세대 SNS 전략,<br>K-콘텐츠 글로벌 전략</p>
+        <p class="cm">Psychology &amp; Marketing · Int'l J. Hospitality Mgmt</p>
+      </div>
+      <!-- 회계재무 -->
+      <div class="card" data-tilt>
+        <div class="ci ci-m"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 10h4"/><path d="M20.833 11h-2.602C16.446 11 15 12.343 15 14s1.447 3 3.23 3h2.603c.084 0 .125 0 .16-.002c.54-.033.97-.432 1.005-.933c.002-.032.002-.071.002-.148v-3.834c0-.077 0-.116-.002-.148c-.036-.501-.465-.9-1.005-.933c-.035-.002-.076-.002-.16-.002Z"/><path d="M20.965 11c-.078-1.872-.328-3.02-1.137-3.828C18.657 6 16.771 6 13 6h-3C6.229 6 4.343 6 3.172 7.172S2 10.229 2 14s0 5.657 1.172 6.828S6.229 22 10 22h3c3.771 0 5.657 0 6.828-1.172c.809-.808 1.06-1.956 1.137-3.828"/><path stroke-linecap="round" d="m6 6l3.735-2.477a3.24 3.24 0 0 1 3.53 0L17 6"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.991 14h.01"/></svg></div>
+        <h3>회계재무</h3>
+        <p>제약·바이오 R&amp;D 회계, 주주권 행사와 이익조정,<br>신용평가 적시성</p>
+        <p class="cm">회계학연구 · 경영학연구</p>
+      </div>
+    </div>
+    <p class="hsh reveal rv3">← 스와이프 →</p>
+
+    <!-- 바이오 시너지 -->
+    <div class="synergy reveal rv3">
+      <div class="syn-c bio">바이오<br>헬스케어</div>
+      <div class="syn-c biz">경영<br>전략</div>
+      <div class="syn-m">헬스케어<br>비즈니스 리더</div>
+    </div>
+    <p class="reveal rv4" style="text-align:center;font-size:13px;color:var(--text-dim);margin-top:16px">R&amp;D 수천억, 출시 10년+ → 전략적 포트폴리오 관리 필수</p>
+    <p class="reveal rv5" style="text-align:center;margin-top:8px"><span class="gt" style="font-size:18px;font-weight:700">졸업생 24.9%</span><span style="font-size:14px;color:var(--text-dim)"> 가 바이오헬스케어 진출</span></p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 2 · CURRICULUM                         -->
+<!-- ═══════════════════════════════════════ -->
+<section id="curriculum" class="bg-d">
+  <div class="orb orb-g" style="top:20%;right:-140px;animation:fo 24s infinite reverse"></div>
+  <div class="si">
+    <p class="stag reveal">02 · CURRICULUM</p>
+    <h2 class="sh reveal rv1"><span class="gt">통합교육</span>으로 키우는<br>진짜 실력</h2>
+    <p class="ss reveal rv2">기업 경영은 퍼즐과 같아서, 한 조각만으로는 전체 그림을 볼 수 없어요.<br>경영학 + AI 브릿지 과목으로 실무 역량을 키웁니다.</p>
+
+    <div class="timeline reveal rv2">
+      <div class="tl-item">
+        <p class="tl-yr">1학년 — 기초</p>
+        <p class="tl-t">경영학원론, 경제학원리, 회계원리</p>
+        <p class="tl-d">기업 경영의 전체 그림을 이해하는 첫 단계</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-yr">2학년 — AI 브릿지</p>
+        <p class="tl-t">AI경영사고와 데이터리터러시, AI기반 마케팅 애널리틱스</p>
+        <p class="tl-d">넷플릭스·스타벅스 사례로 AI+경영 기초를 다지고, SNS 감성분석과 생성형AI 광고 카피를 경험합니다</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-yr">3학년 — 심화</p>
+        <p class="tl-t">AI기반 재무데이터분석, 전공 심화 과목</p>
+        <p class="tl-d">주식 시계열 분석, 뉴스-주가 상관분석 등 실무 데이터 역량</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-yr">4학년 — 캡스톤</p>
+        <p class="tl-t">비즈니스AI 캡스톤 프로젝트</p>
+        <p class="tl-d">실제 기업 현안을 AI로 해결하는 졸업 프로젝트</p>
+      </div>
+    </div>
+
+    <div class="chips reveal rv3">
+      <span class="chip chip-g">경영기획</span>
+      <span class="chip chip-g">마케팅</span>
+      <span class="chip chip-g">회계재무</span>
+      <span class="chip chip-b">헬스케어 비즈니스</span>
+      <span class="chip chip-b">비즈니스 애널리틱스</span>
+    </div>
+    <p class="reveal rv4" style="margin-top:16px;font-size:12px;color:var(--text-muted)">재무 전문가도 마케팅 ROI를, 회계사도 인건비 구조를 이해해야 합니다. 협력기관: 조세재정연구원, 국회예산정책처, 금융감독원</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 3 · AI CONVERGENCE                     -->
+<!-- ═══════════════════════════════════════ -->
+<section id="ai" class="bg-a">
+  <div class="orb orb-b" style="top:-60px;left:30%;animation:fo 18s infinite"></div>
+  <div class="si">
+    <p class="stag reveal">03 · AI CONVERGENCE</p>
+    <h2 class="sh reveal rv1">AI 시대, <span class="gt">경영학이<br>더 중요해집니다</span></h2>
+    <p class="ss reveal rv2">GPU 서버부터 실감미디어 스튜디오까지, 실습 환경이 완비되어 있습니다.</p>
+
+    <div class="bento reveal rv2">
+      <div class="card lg" data-tilt>
+        <div class="ci ci-p"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 19.5h-5m5 0c0-.713 0-1.07.038-1.307c.123-.763.144-.812.631-1.412c.151-.186.711-.688 1.832-1.692A7.5 7.5 0 1 0 7 15.09c1.12 1.004 1.68 1.505 1.832 1.692c.487.6.508.649.63 1.412c.039.237.039.593.039 1.307m5 0c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.349.2-.816.2-1.751.2s-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549c-.201-.348-.201-.815-.201-1.75"/><path stroke-linecap="round" stroke-linejoin="round" d="m12.786 8.5l-2.143 3h3l-2.143 3"/></svg></div>
+        <h3>AI비즈니스 분석 랩</h3>
+        <p>40석 GPU서버, 클라우드 크레딧,<br>생성형AI API 제공<br><br>경영학 실습에 최적화된 분석 환경에서 실제 데이터를 다루며 배웁니다.</p>
+      </div>
+      <div class="card r1" data-tilt>
+        <div class="ci ci-c"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M15.414 10.941c.781.462.781 1.656 0 2.118l-4.72 2.787C9.934 16.294 9 15.71 9 14.786V9.214c0-.924.934-1.507 1.694-1.059z"/></svg></div>
+        <h3>실감미디어 스튜디오</h3>
+        <p>LED월+크로마키, AI피드백,<br>투자자 피칭 리허설</p>
+      </div>
+      <div class="card r2" data-tilt>
+        <div class="ci ci-b"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 14l2.293-2.293a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 0 1.414 0L17 10m0 0v2.5m0-2.5h-2.5"/></svg></div>
+        <h3>실시간 대시보드</h3>
+        <p>Bloomberg 연동, 뉴스감성·트렌드<br>자동 모니터링</p>
+      </div>
+    </div>
+
+    <div class="bento-b reveal rv3">
+      <div class="card" data-tilt>
+        <div class="ci ci-m"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.5 13.572L12 21l-2.896-2.868m-6.117-8.104A5 5 0 0 1 12 7.006a5 5 0 1 1 7.5 6.572"/><path d="M3 13h2l2 3l2-6l1 3h3"/></svg></div>
+        <h3>헬스케어AI 샌드박스</h3>
+        <p>비식별 진료데이터, 건보공단 데이터 분석 환경</p>
+      </div>
+      <div class="card" data-tilt>
+        <h3 style="margin-bottom:12px">AI 시대, 경영학이 중요한 이유</h3>
+        <ul class="reason-list">
+          <li><strong>전략적 의사결정</strong> — AI가 분석하지만, 최종 판단은 사람의 몫</li>
+          <li><strong>이해관계자 조정</strong> — 주주·직원·고객 사이의 균형</li>
+          <li><strong>윤리적 경영</strong> — ESG 경영, 데이터 윤리 판단</li>
+          <li><strong>비즈니스 전환</strong> — AI·빅데이터를 사업 모델로 전환</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 4 · CAREERS                            -->
+<!-- ═══════════════════════════════════════ -->
+<section id="careers" class="bg-d">
+  <div class="orb orb-g" style="top:5%;right:-100px;animation:fo 20s infinite"></div>
+  <div class="si">
+    <p class="stag reveal">04 · CAREERS</p>
+    <h2 class="sh reveal rv1">경영학만 전공해도<br><span class="gt">취업이 되나요?</span></h2>
+
+    <div class="stat-hero reveal rv2">
+      <div class="stat-num gt" data-count="88">0</div>
+      <p class="stat-lbl">취업률 · 전국 평균 대비 우수</p>
+    </div>
+
+    <div class="bar-chart reveal rv3">
+      <div class="bar-item"><div class="bar-lbl"><span>경영기획</span><span>48.9%</span></div><div class="bar-track"><div class="bar-fill" data-width="48.9"></div></div></div>
+      <div class="bar-item"><div class="bar-lbl"><span>회계·세무·금융</span><span>20.8%</span></div><div class="bar-track"><div class="bar-fill" data-width="20.8"></div></div></div>
+      <div class="bar-item"><div class="bar-lbl"><span>마케팅</span><span>14.0%</span></div><div class="bar-track"><div class="bar-fill" data-width="14.0"></div></div></div>
+    </div>
+
+    <div class="co-grid reveal rv3">
+      <div class="co-card">
+        <h4>금융·증권</h4>
+        <ul><li>하나은행</li><li>SK증권</li><li>신한은행</li><li>KB국민은행</li></ul>
+      </div>
+      <div class="co-card">
+        <h4>대기업</h4>
+        <ul><li>현대자동차</li><li>삼성바이오로직스</li><li>롯데</li><li>CJ올리브영</li></ul>
+      </div>
+      <div class="co-card">
+        <h4>IT·플랫폼</h4>
+        <ul><li>쿠팡</li><li>스마일게이트</li><li>메가존클라우드</li></ul>
+      </div>
+      <div class="co-card">
+        <h4>병원·헬스케어</h4>
+        <ul><li>세브란스병원</li><li>차병원 계열</li><li>제약회사</li></ul>
+      </div>
+    </div>
+
+    <div class="chips reveal rv4">
+      <span class="chip chip-g">바이오 24.9%</span>
+      <span class="chip chip-g">금융 19.5%</span>
+      <span class="chip chip-b">IT 19.0%</span>
+    </div>
+
+    <div class="creative reveal rv4">
+      <h4>크리에이티브 진로</h4>
+      <p>공연기획자 · 미술관 큐레이터 · 문화 마케터 · IR·PR · 콘텐츠 비즈니스 · 인플루언서 마케팅</p>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:8px">FNC엔터테인먼트, 서울환경영화제, 광고대행사, MCN 기업 등</p>
+    </div>
+
+    <p class="reveal rv5" style="text-align:center;margin-top:24px;font-size:13px;color:var(--text-dim)">경영학 단일전공만으로도 충분! 복수전공은 차별화 전략(선택)</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 5 · ONLY CHA                           -->
+<!-- ═══════════════════════════════════════ -->
+<section id="only-cha" class="bg-a">
+  <div class="orb orb-g" style="top:30%;left:-120px;animation:fo 26s infinite"></div>
+  <div class="si">
+    <p class="stag reveal">05 · ONLY ONE</p>
+    <div class="statement reveal rv1">
+      <h2>전국 <span class="gt">유일</span>,<br>의과학대학 안의 경영학</h2>
+    </div>
+
+    <div class="four-grid reveal rv2">
+      <div class="card" data-tilt>
+        <div class="ci ci-c"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M22 22H2"/><path d="M17 22V6c0-1.886 0-2.828-.586-3.414S14.886 2 13 2h-2c-1.886 0-2.828 0-3.414.586S7 4.114 7 6v16m14 0V11.5c0-1.405 0-2.107-.337-2.611a2 2 0 0 0-.552-.552C19.607 8 18.904 8 17.5 8M3 22V11.5c0-1.405 0-2.107.337-2.611a2 2 0 0 1 .552-.552C4.393 8 5.096 8 6.5 8"/><path stroke-linecap="round" d="M12 22v-3M10 5h4m-4 3h4m-4 3h4m-4 3h4"/></svg></div>
+        <h3>차병원 네트워크</h3>
+        <p>졸업생 10.9% 차병원그룹 취업</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-g"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8c0-2.828 0-4.243.879-5.121C5.757 2 7.172 2 10 2h4c2.828 0 4.243 0 5.121.879C20 3.757 20 5.172 20 8v8c0 2.828 0 4.243-.879 5.121C18.243 22 16.828 22 14 22h-4c-2.828 0-4.243 0-5.121-.879C4 20.243 4 18.828 4 16z"/><path d="M19.898 16h-12c-.93 0-1.395 0-1.777.102A3 3 0 0 0 4 18.224"/><path stroke-linecap="round" d="M8 7h8m-8 3.5h5m6.5 8.5H8"/></svg></div>
+        <h3>특화 커리큘럼</h3>
+        <p>의료경영, 바이오산업론</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-b"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12a10 10 0 1 1-20.001 0A10 10 0 0 1 22 12Z"/><path d="M16 12c0 1.313-.104 2.614-.305 3.827c-.2 1.213-.495 2.315-.867 3.244c-.371.929-.812 1.665-1.297 2.168c-.486.502-1.006.761-1.531.761s-1.045-.259-1.53-.761c-.486-.503-.927-1.24-1.298-2.168c-.372-.929-.667-2.03-.868-3.244A23.6 23.6 0 0 1 8 12c0-1.313.103-2.614.304-3.827s.496-2.315.868-3.244c.371-.929.812-1.665 1.297-2.168C10.955 2.26 11.475 2 12 2s1.045.259 1.53.761c.486.503.927 1.24 1.298 2.168c.372.929.667 2.03.867 3.244C15.897 9.386 16 10.687 16 12Z"/><path stroke-linecap="round" d="M2 12h20"/></svg></div>
+        <h3>연구 네트워크</h3>
+        <p>조세재정연구원, 금융감독원</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-p"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.222 4.601a9.5 9.5 0 0 1 1.395-.771c1.372-.615 2.058-.922 2.97-.33c.913.59.913 1.56.913 3.5v1.5c0 1.886 0 2.828.586 3.414s1.528.586 3.414.586H17c1.94 0 2.91 0 3.5.912c.592.913.285 1.599-.33 2.97a9.5 9.5 0 0 1-10.523 5.435A9.5 9.5 0 0 1 6.222 4.601Z"/><path d="M21.446 7.069a8.03 8.03 0 0 0-4.515-4.515C15.389 1.947 14 3.344 14 5v4a1 1 0 0 0 1 1h4c1.657 0 3.053-1.39 2.446-2.931Z"/></svg></div>
+        <h3>데이터 분석</h3>
+        <p>건강보험공단, 빅데이터 활용</p>
+      </div>
+    </div>
+
+    <div class="compare-row reveal rv3">
+      <div class="compare-card">
+        <h4>디지털 보건의료</h4>
+        <p class="cf">서비스 기획 중심 · 사람과 소통</p>
+        <p>병원 경영기획, 디지털 헬스 서비스 기획</p>
+      </div>
+      <div class="compare-card">
+        <h4>AI 의료데이터</h4>
+        <p class="cf">데이터 분석 중심 · 기술 역량</p>
+        <p>헬스케어 데이터 분석가, 보험 리스크 분석</p>
+      </div>
+    </div>
+    <p class="compare-note reveal rv4">둘 다 경영학과 시너지가 큽니다!</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 6 · EXPERIENCE                         -->
+<!-- ═══════════════════════════════════════ -->
+<section id="experience" class="bg-d">
+  <div class="orb orb-b" style="bottom:-60px;right:-80px;animation:fo 21s infinite reverse"></div>
+  <div class="si">
+    <p class="stag reveal">06 · EXPERIENCE</p>
+    <h2 class="sh reveal rv1"><span class="gt">실전</span>에서 배우는<br>진짜 경영</h2>
+
+    <div class="magazine reveal rv2">
+      <div class="card feat" data-tilt>
+        <div class="ci ci-c"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 13.111C20 20.222 13.956 22 10.933 22C8.29 22 3 20.222 3 13.111c0-2.782 1.461-4.65 2.86-5.716c.778-.594 1.77-.003 1.87.971l.086.838c.105 1.02 1.033 1.857 1.893 1.298C11.394 9.407 12 6.775 12 5.333V5.01c0-1.43 1.444-2.35 2.602-1.512C17.165 5.35 20 8.584 20 13.11Z"/><path d="M8 18.445C8 21.289 10.489 22 11.733 22c1.09 0 3.267-.711 3.267-3.555c0-1.102-.59-1.845-1.16-2.274c-.398-.299-.957-.03-1.094.449c-.178.624-.823 1.016-1.152.456c-.3-.512-.3-1.28-.3-1.743c0-.636-.64-1.048-1.155-.674C9.106 15.409 8 16.68 8 18.445Z"/></svg></div>
+        <h3>CHA AI 해커톤</h3>
+        <p>학기별 48시간, 학제간 협업, 실제 기업 과제<br><br>해커톤, 세미나, 인큐베이팅까지 — 도전의 생태계에서 실전 경험을 쌓습니다.</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-g"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="6" r="4"/><path stroke-linecap="round" d="M15 9a3 3 0 1 0 0-6"/><ellipse cx="9" cy="17" rx="7" ry="4"/><path stroke-linecap="round" d="M18 14c1.754.385 3 1.359 3 2.5c0 1.03-1.014 1.923-2.5 2.37"/></svg></div>
+        <h3>의사소통 능력</h3>
+        <p>발표, 토론, 설득 — 팀워크 기반 실무 역량</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-b"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8a6 6 0 1 1 12 0v5a6 6 0 0 1-12 0z"/><path stroke-linecap="round" d="M10 6.5s.473-.5 2-.5s2 .5 2 .5m-4 3s.473-.5 2-.5s2 .5 2 .5m7 1.5v2a9 9 0 1 1-18 0v-2"/></svg></div>
+        <h3>AI 리더스 세미나</h3>
+        <p>월1회, 스타트업CEO, CDO, VC 초청</p>
+      </div>
+    </div>
+
+    <div class="exp-b reveal rv3">
+      <div class="card" data-tilt>
+        <div class="ci ci-m"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3-5a9 9 0 0 0 6-8a3 3 0 0 0-3-3a9 9 0 0 0-8 6a6 6 0 0 0-5 3"/><path d="M7 14a6 6 0 0 0-3 6a6 6 0 0 0 6-3m4-8a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg></div>
+        <h3>창업 인큐베이팅</h3>
+        <p>프리→본 인큐베이팅, 데모데이, 투자 연결</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-p"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 8V6c0-1.886 0-2.828-.586-3.414S14.886 2 13 2h-2c-1.886 0-2.828 0-3.414.586S7 4.114 7 6v2"/><path d="M10.564 5.783a3 3 0 0 1 2.872 0l4.794 2.614a3 3 0 0 1 1.564 2.634v4.938a3 3 0 0 1-1.564 2.634l-4.794 2.614a3 3 0 0 1-2.872 0l-4.795-2.614a3 3 0 0 1-1.563-2.634V11.03a3 3 0 0 1 1.563-2.634z"/><path d="M11.146 11.523c.38-.682.57-1.023.854-1.023s.474.341.854 1.023l.098.176c.108.194.162.29.246.355c.085.063.19.087.4.135l.19.043c.738.167 1.107.25 1.195.533c.088.282-.164.576-.667 1.164l-.13.152c-.143.168-.215.251-.247.355s-.021.214 0 .438l.02.203c.076.784.114 1.177-.115 1.351c-.23.175-.576.016-1.267-.302l-.178-.083c-.197-.09-.295-.135-.399-.135s-.202.045-.399.135l-.178.083c-.691.318-1.037.477-1.267.302c-.23-.174-.191-.567-.115-1.351l.02-.203c.021-.224.032-.335 0-.438c-.032-.104-.104-.187-.247-.355l-.13-.152c-.503-.588-.755-.882-.667-1.164c.088-.283.457-.366 1.195-.533l.19-.043c.21-.048.315-.072.4-.135c.084-.064.138-.161.246-.355z"/></svg></div>
+        <h3>자격증 부트캠프</h3>
+        <p>ADsP, SQLD, 빅데이터분석기사 · 합격시 환급</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-c"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m17 9.5l.658-.329c1.946-.973 2.92-1.46 3.63-1.02c.712.44.712 1.528.712 3.703v.292c0 2.176 0 3.263-.711 3.703c-.712.44-1.685-.047-3.63-1.02L17 14.5zm-3.44-2.06a1.5 1.5 0 1 1-2.121 2.12a1.5 1.5 0 0 1 2.122-2.12Z"/><path d="M2 11.5c0-3.287 0-4.931.908-6.038a4 4 0 0 1 .554-.554C4.57 4 6.212 4 9.5 4c3.287 0 4.931 0 6.038.908a4 4 0 0 1 .554.554C17 6.57 17 8.212 17 11.5v1c0 3.287 0 4.931-.908 6.038a4 4 0 0 1-.554.554C14.43 20 12.788 20 9.5 20c-3.287 0-4.931 0-6.038-.908a4 4 0 0 1-.554-.554C2 17.43 2 15.788 2 12.5z"/></svg></div>
+        <h3>영상 + 경영</h3>
+        <p>마케팅 프레임 기획, A/B 테스트, ROI 측정 — 성과를 내는 콘텐츠</p>
+      </div>
+      <div class="card" data-tilt>
+        <div class="ci ci-g"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16c-5.76 0-6.78-5.74-6.96-10.294c-.051-1.266-.076-1.9.4-2.485c.475-.586 1.044-.682 2.183-.874A26.4 26.4 0 0 1 12 2c1.784 0 3.253.157 4.377.347c1.139.192 1.708.288 2.184.874s.45 1.219.4 2.485C18.781 10.26 17.761 16 12.001 16Z"/><path stroke-linecap="round" d="M12 16v3"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.5 22h-7l.34-1.696a1 1 0 0 1 .98-.804h4.36a1 1 0 0 1 .98.804z"/><path d="m19 5l.949.316c.99.33 1.485.495 1.768.888S22 7.12 22 8.162v.073c0 .86 0 1.291-.207 1.643s-.584.561-1.336.98L17.5 12.5M5 5l-.949.316c-.99.33-1.485.495-1.768.888S2 7.12 2 8.162v.073c0 .86 0 1.291.207 1.643s.584.561 1.336.98L6.5 12.5m4.646-6.477C11.526 5.34 11.716 5 12 5s.474.34.854 1.023l.098.176c.108.194.162.29.246.354c.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532s-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354s-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352c-.23.174-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.135-.399-.135s-.202.045-.399.135l-.178.082c-.691.319-1.037.477-1.267.303s-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438s-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165c.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135c.084-.064.138-.16.246-.354z"/><path stroke-linecap="round" d="M18 22H6"/></svg></div>
+        <h3>경진대회</h3>
+        <p>기업경영사례 경진대회 — 실전 경험과 수상 이력</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 7 · FAQ                                -->
+<!-- ═══════════════════════════════════════ -->
+<section id="faq" class="bg-a">
+  <div class="orb orb-g" style="bottom:10%;right:-100px;animation:fo 23s infinite"></div>
+  <div class="si">
+    <p class="stag reveal">07 · FAQ</p>
+    <h2 class="sh reveal rv1">자주 묻는 <span class="gt">질문</span></h2>
+
+    <div class="faq-list reveal rv2">
+      <div class="faq-item">
+        <button class="faq-q">수학을 못해도 괜찮을까요? <span class="fa">▾</span></button>
+        <div class="faq-a"><div class="faq-ai">걱정 마세요! 회계원리는 '자산 = 부채 + 자본' 이 공식부터, 경영통계는 평균·분산부터 시작합니다. 고등학교 수준의 기초 수학이면 충분해요. 교수학습지원센터와 튜터링 프로그램, 선배 멘토링까지 학습 지원 시스템이 잘 갖춰져 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">경영학만 전공해도 취업이 되나요? <span class="fa">▾</span></button>
+        <div class="faq-a"><div class="faq-ai">네! 우리 학과 취업률은 88%로 전국 평균을 크게 상회합니다. 경영기획(48.9%), 회계·세무·금융(20.8%), 마케팅(14.0%) 등 다양한 분야로 진출하고 있어요. 복수전공은 필수가 아니라 선택적 차별화 전략입니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">복수전공은 필수인가요? <span class="fa">▾</span></button>
+        <div class="faq-a"><div class="faq-ai">아닙니다! 경영학 단일전공만으로도 충분히 취업할 수 있습니다. 다만, 차의과학대만의 특화 트랙인 '헬스케어 비즈니스'나 '비즈니스 애널리틱스'는 경영학 내에서 이수할 수 있어 추천합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">팀프로젝트가 많다는데, 힘들지 않나요? <span class="fa">▾</span></button>
+        <div class="faq-a"><div class="faq-ai">팀프로젝트가 많은 이유는 실제 기업이 팀워크 기반으로 움직이기 때문이에요. 발표·토론·설득의 의사소통 능력, 케이스 스터디를 통한 문제해결 능력, 조장 경험을 통한 리더십 — 모두 취업할 때 강력한 무기가 됩니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">AI 시대에도 경영학이 중요할까요? <span class="fa">▾</span></button>
+        <div class="faq-a"><div class="faq-ai">오히려 더 중요해집니다! AI가 데이터를 분석하지만 최종 판단은 사람의 몫이고, 주주·직원·고객 사이의 균형을 잡고, ESG·데이터 윤리를 판단하며, AI·빅데이터를 사업 모델로 전환하는 것 — 이 모든 영역에서 경영학이 핵심 역할을 합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">바이오와 경영을 같이 배우면 어떤 장점이 있나요? <span class="fa">▾</span></button>
+        <div class="faq-a"><div class="faq-ai">차의과학대학교는 전국 유일하게 의과학대학 안에 경영학이 있어요. 졸업생의 24.9%가 바이오헬스케어 분야로 진출하며, 차병원 네트워크 취업(10.9%), 건강보험공단 빅데이터 활용 등 차별화된 기회를 제공합니다.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 8 · FOOTER                             -->
+<!-- ═══════════════════════════════════════ -->
+<section id="footer" class="bg-d footer-s">
+  <div class="si">
+    <h2 class="reveal">경영학전공이 궁금하다면</h2>
+    <button class="cta-btn reveal rv1" onclick="if(window.BizAuth)BizAuth.openChat();else showPIP();">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.009m3.982 0H12m3.991 0H16"/><path stroke-width="1.5" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22Z"/></svg>
+      상담 시작하기
+    </button>
+    <div class="footer-info reveal rv2">
+      차의과학대학교 미래융합대학 · 경영학전공<br>
+      경기도 포천시 해룡로 120<br>
+      <a href="https://biz.cha.ac.kr">biz.cha.ac.kr</a> · 박대근 교수<br><br>
+      &copy; 2025 CHA University. All rights reserved.
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PIP Avatar ═══ -->
+<div id="heygen-pip-container">
+  <iframe allow="camera; microphone; autoplay; clipboard-write" id="heygen-pip" src="https://interactiveavatarnextjsdemo.netlify.app"></iframe>
+  <div class="pdb top"></div>
+  <div class="pdb left"></div>
+  <div class="pdb right"></div>
+  <div class="pdb bottom"></div>
+  <div class="phg"></div>
+  <div class="pc">
+    <button class="pcb" onclick="toggleMinimizePIP()" title="최소화">−</button>
+    <button class="pcb cb" onclick="closePIP()" title="닫기">×</button>
+  </div>
+</div>
+<button id="heygen-pip-toggle" onclick="showPIP()">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path d="M3.092 6.637L9.782 3.5a5.17 5.17 0 0 1 4.435 0l6.692 3.137c1.455.682 1.455 3.044 0 3.726L14.218 13.5a5.17 5.17 0 0 1-4.435 0L5 11.258"/><path stroke-linejoin="round" d="M2.5 15v-2.862c0-1.28 0-1.92.33-2.42c.33-.501.919-.753 2.094-1.257L6 8"/><path d="M19 11.5v5.125c0 1.008-.503 1.952-1.385 2.44C16.146 19.88 13.796 21 12 21s-4.146-1.121-5.615-1.934C5.504 18.577 5 17.633 5 16.626V11.5"/></svg>
+</button>
+
+
+<script>
+/* ═══ SCROLL PROGRESS ═══ */
+const spBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  spBar.style.transform = 'scaleX(' + (h > 0 ? window.scrollY / h : 0) + ')';
+}, {passive:true});
+
+/* ═══ REVEAL (IntersectionObserver) ═══ */
+const rObs = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08, rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+
+/* ═══ WORD-BY-WORD ═══ */
+document.querySelectorAll('.split-words').forEach(el => {
+  const words = el.textContent.trim().split(/\s+/);
+  el.innerHTML = words.map((w,i) =>
+    '<span class="split-word" style="transition-delay:'+i*0.06+'s">'+w+'</span>'
+  ).join(' ');
+});
+const swObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting) e.target.querySelectorAll('.split-word').forEach(w => w.classList.add('visible'));
+  });
+}, {threshold:0.3});
+document.querySelectorAll('.split-words').forEach(el => swObs.observe(el));
+
+/* ═══ COUNT-UP ═══ */
+document.querySelectorAll('[data-count]').forEach(el => {
+  new IntersectionObserver(([e]) => {
+    if(!e.isIntersecting) return;
+    const t = parseInt(el.dataset.count);
+    const dur = 2000;
+    const start = performance.now();
+    (function up(now){
+      const p = Math.min((now - start)/dur, 1);
+      const ease = 1 - Math.pow(1-p, 3);
+      el.innerHTML = Math.round(t*ease) + '<span style="font-size:clamp(20px,4vw,32px)">%</span>';
+      if(p < 1) requestAnimationFrame(up);
+    })(performance.now());
+  }, {threshold:0.5}).observe(el);
+});
+
+/* ═══ BAR FILL ═══ */
+document.querySelectorAll('.bar-fill').forEach(bar => {
+  new IntersectionObserver(([e]) => {
+    if(e.isIntersecting) bar.style.width = bar.dataset.width + '%';
+  }, {threshold:0.3}).observe(bar);
+});
+
+/* ═══ 3D CARD TILT ═══ */
+if(window.matchMedia('(hover:hover)').matches){
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      card.style.transform = 'perspective(800px) rotateY('+x*8+'deg) rotateX('+(-y*8)+'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* ═══ FAQ ACCORDION ═══ */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const ans = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      ans.style.maxHeight = ans.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ═══ NAV DOTS ═══ */
+const secs = document.querySelectorAll('section');
+const nd = document.getElementById('navDots');
+secs.forEach(() => { const d = document.createElement('button'); d.className='nav-dot'; nd.appendChild(d); });
+const dots = document.querySelectorAll('.nav-dot');
+dots.forEach((d,i) => { d.onclick = () => secs[i].scrollIntoView({behavior:'smooth'}); });
+secs.forEach(s => new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting){
+      const i = Array.from(secs).indexOf(e.target);
+      dots.forEach((d,j) => d.classList.toggle('active', j===i));
+    }
+  });
+}, {threshold:0.15}).observe(s));
+
+/* ═══ PIP DRAG ═══ */
+const pc = document.getElementById('heygen-pip-container');
+let dragging = false, sx, sy, sl, st;
+document.querySelectorAll('.pdb').forEach(b => {
+  b.addEventListener('mousedown', sd);
+  b.addEventListener('touchstart', sd, {passive:false});
+});
+function sd(e){
+  dragging=true; pc.classList.add('dragging');
+  const t = e.touches ? e.touches[0] : e;
+  sx=t.clientX; sy=t.clientY;
+  const r = pc.getBoundingClientRect(); sl=r.left; st=r.top;
+  e.preventDefault();
+}
+function dr(e){
+  if(!dragging) return;
+  const t = e.touches ? e.touches[0] : e;
+  let nl=sl+(t.clientX-sx), nt=st+(t.clientY-sy);
+  nl=Math.max(0,Math.min(nl,innerWidth-pc.offsetWidth));
+  nt=Math.max(0,Math.min(nt,innerHeight-pc.offsetHeight));
+  pc.style.left=nl+'px'; pc.style.top=nt+'px';
+  pc.style.right='auto'; pc.style.bottom='auto';
+  e.preventDefault();
+}
+function sdr(){ if(!dragging)return; dragging=false; pc.classList.remove('dragging'); }
+document.addEventListener('mousemove', dr);
+document.addEventListener('mouseup', sdr);
+document.addEventListener('touchmove', dr, {passive:false});
+document.addEventListener('touchend', sdr);
+
+/* ═══ PIP CONTROLS ═══ */
+let isMin = false;
+function toggleMinimizePIP(){
+  const r = pc.getBoundingClientRect();
+  if(!isMin){
+    pc.style.left=(r.right-120)+'px'; pc.style.top=(r.bottom-68)+'px';
+    pc.style.right='auto'; pc.style.bottom='auto';
+    isMin=true; pc.classList.add('minimized');
+  } else { isMin=false; pc.classList.remove('minimized'); }
+}
+function closePIP(){
+  const f = document.getElementById('heygen-pip');
+  if(f.contentWindow) f.contentWindow.postMessage({type:'END_SESSION'},'*');
+  pc.classList.add('hidden');
+}
+function showPIP(){
+  pc.classList.remove('hidden');
+  if(isMin){ isMin=false; pc.classList.remove('minimized'); }
+}
+
+/* ═══ NAVIGATE_TAB → 섹션 스크롤 (매핑 업데이트) ═══ */
+window.addEventListener('message', e => {
+  const allowed = [
+    'https://interactiveavatarnextjsdemo.netlify.app',
+    'https://sungbongju.github.io',
+    'https://sdkparkforbi.github.io',
+    'http://localhost','http://127.0.0.1'
+  ];
+  if(!allowed.some(o => e.origin.startsWith(o))) return;
+  const {type, tabId} = e.data || {};
+  if(type === 'NAVIGATE_TAB' && tabId){
+    const map = {
+      tab0:'hero',tab1:'research',tab2:'curriculum',tab3:'careers',
+      tab4:'curriculum',tab5:'ai',tab6:'experience',tab7:'research',
+      tab8:'only-cha',tab9:'careers',tab10:'careers',tab11:'only-cha',
+      tab12:'careers',tab13:'faq',tab14:'experience',tab15:'curriculum',
+      tab16:'ai',tab17:'experience'
+    };
+    const sid = map[tabId] || tabId;
+    console.log('NAVIGATE_TAB:', tabId, '→', sid);
+    const sec = document.getElementById(sid);
+    if(sec) sec.scrollIntoView({behavior:'smooth'});
+  }
+});
+</script>
+<script src="js/auth.js"></script>
+</body>
+</html>
